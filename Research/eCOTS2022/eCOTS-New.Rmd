@@ -1,0 +1,458 @@
+---
+title: '<font size = 7 color = "skyblue">An End-to-end Project-based Approach to Teaching Data Mining Process </font>'
+subtitle: '<font size = 6 color = "gold">A Case Study in Credit Card Fraud Detection </font>'
+author: '<font size = 6 color = "skyblue">Cheng Peng </font>'
+institute: '<font size = 6 color = "skyblue">West Chester University of Pennsylvania</font><br> '
+date: '<font color = "skyblue" size =5>05/14/2022 <font> <br> <font color = "skyblue" size =4> Presented at<br> </font> <br> <font color = "gold" size = 6> eCOTS 2022: Teaching Data Mining </font> <br> <br> <font color = "white" size = 5> Slides available at: https://rpubs.com/cpeng/eCOTS2022 AND https://pengdsci.github.io/eCOTS2022/</font>'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+class: inverse, middle
+## Agenda
+
+### Learning from Learning Theories
+
+- Learning Theories
+
+- Pedagogical Strategies
+
+### Case-study: Credit Card Fraud Mining
+
+- Fraud Background
+
+- Analytic View of Fraud and Challenges
+
+- Feature Extraction
+
+- Analytic Fraud Identification Methods and Assessment
+
+- Deployment and Automation
+
+
+---
+class: inverse, center, middle
+
+
+# Learning from Learning Theories
+
+
+
+---
+class: center, middle
+
+# Teaching DM Process vs Techniques
+
+Cross-Industry Standard Process for Data Mining (CRISP-DM)
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/CRISP-DM.png?raw=true" width = "400" height = "400">
+
+<center><font size =1 color= "navy">Source: https://blogs.sap.com/2018/08/28/sap-machine-learning-approaching-your-project/</font></center>
+
+
+---
+# Learning from Learning Theories
+
+There are many learning theories. They all fall under the three major theories.
+
+<center><img src = "https://github.com/pengdsci/eCOTS2022/blob/main/learningTheory.png?raw=true" width="200" height="150"></center>
+
+-	**Behaviorism Learning Theory**: knowledge is independent and on the exterior of the learner. It focuses on the outside environment’s influences on learning.
+
+-	**Cognitive Learning Theory**: processing information received rather than just responding to a stimulus as in behaviorism learning theory. It uses metacognition - “thinking about thinking”—to understand how <font color = "red"> thought processes influence learning </font>.
+
+-	**Constructivism Learning Theory**: constructing learning new ideas based on the prior knowledge and experiences <font color = "red"> through active engagement with the world (such as experiments or real-world problem solving) </font>
+
+---
+
+# Some Principles of Constructivism Theory
+
+I am a firm believer in constructivism learning theory.
+
+
+-	<font color = "blue"><b>Knowledge is constructed</b></font>. This is the basic principle, meaning that knowledge is built upon the foundation of previous learning.
+
+-	<font color = "blue"><b>Learning is a social activity</b></font>. Learning is something we do together, in interaction with each other, rather than an abstract concept.
+
+-	There is no knowledge independent of the meaning attributed to experience (constructed) by the learner, or community of learners.
+
+-	<font color = "blue"><b>Learning is contextual</b></font>: we do not learn isolated facts and theories that are separated from the rest of our lives. 
+
+-	<font color = "blue"><b>Motivation is key to learning</b></font>. Cognitive motivation is rooted in the availability of information and past experience/ prior knowledge.  
+
+
+
+---
+# My Adopted Pedagogies in Teaching Analytics
+
+
+
+-	Providing experience with the knowledge construction process - students determine how they will learn.
+
+-	Providing experience in and appreciation for multiple perspectives - evaluation of alternative solutions.
+
+-	Embedding learning in realistic contexts - authentic tasks.
+
+-	Embedding learning in social experience – collaborative learning.
+
+-	Encourage awareness of the knowledge construction process - reflection, metacognition.
+
+-	Facilitate students to make sense of information presently available and in determining how to respond or relate to the current situation.
+
+
+
+
+---
+class: inverse, center, middle
+
+# Case Study 
+
+### Credit Card Fraud Detection
+
+
+---
+
+# Adapted CRISP-DM for Fraud Mining Process
+
+<center>
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/CRISP-FD.png?raw=true" width = "400" height = "400"> </center> 
+
+
+- **Data Preparation** - thinking of automation in the phase.
+
+- **Modeling** - train / retrain models and algorithms according to the change in the fraud dynamics.
+
+
+
+---
+
+# Credit Card Transaction Process
+
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/creditCardProcessing.png?raw=true">
+
+<center><font size = 1 color = "navy">Source:  https://business.chase.com/resources/start/a-crash-course-on-taking-the-mystery-out-of-payments </font></center>
+---
+
+
+# What is Credit Card Fraud?
+
+**Credit card fraud** is a form of identity theft that involves an unauthorized taking of another’s credit card information for the purpose of charging purchases to the account or removing funds from it. 
+
+**Credit Card Fraud Types**: Credit card fraud schemes generally fall into one of two categories of fraud: application fraud and account takeover.
+
+- Identity theft
+
+- [Skimming Fraud (a kind of account takeover)](https://www.youtube.com/watch?v=G_aH50Tn8Fo)
+
+**Why Combat Credit Fraud Loss**:  Card fraud over the next decade will cost the industry a collective $408.50 billion in losses globally, according to an annual report from the industry research firm Nilson Report. 
+
+
+
+---
+
+# Fraud Data Generation Process & Availability
+
+ <font color = "darkred"><b>Pre-authorization</b></font>: timestamp, geo-info of POS, Card information (card number, expiration date, billing address, security code)
+
+ <font color = "darkred"><b>Authorization</b></font>:  Pre-auth info + requested payment amount
+
+ <font color = "darkred"><b>Authentication</b></font>: the issuing bank will 
+
+- verify the authorization information sent from the processor: validating card info and checking the availability of funds (credit line); and
+
+- send the result of the authentication to the merchant: approval or denial.
+
+- The merchant will send the complete transaction information to the issuing bank or the processor.
+
+
+---
+
+# Fraud Data Generation Process: A General Fraud Management System
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/fraudDetationProcess.png?raw=true">
+
+
+
+---
+#	Availability and Types of Data
+
+Based on credit card processing and the general fraud detection system, The following information is available in different processing stages:
+
+
+-	**Pre-authorization Data**
+  + geo-information of point of sale (POS)  
+  + time-stamp. 
+  + card information.
+
+-	**Authorization and Authentication Data**
+  + pre-auth information
+  + payment information
+
+-	**Historical Data** 
+  + complete transaction information. 
+  + confirmed fraud (labels).
+  + account information, etc.
+
+- **Other Publicly Data**: crime rate, etc. 
+
+
+---
+
+# Data Preparation - Collection
+
+**Goal**: detect/identify fraudulent transactions.
+ 
+**Challenges**: 
+
+- No information about fraudsters!
+
+- Real-time detection.
+
+- the rarity of fraud.
+
+**What information is relevant?**
+
+- Current transaction: card info, timestamp, amount, POS info.
+
+- Historical transactions: timestamp, amount, POS info, fraud labels.
+
+- Account information: Card holder’s info.
+
+- Derived merchant site info (including publicly available info).
+
+
+---
+#	Creating Analytic Data According to Potential Analytic Methods
+
+-	**Key Point**: <font color = "red"><b>Fraudulent activity alters genuine customers’ spending patterns!</b></font>
+
+-	**Cross-sectional Data**: current transactions.
+
+-	**Longitudinal /Panel Data**: current and historical transactions
+
+-	**Hybrid Cross-sectional and Longitudinal Data**: both current transactions and aggregated information of historical transactions 
+
+
+---
+#	Types of Candidate Models/Algorithms
+
+-	Business rules (expert system).
+
+-	Supervised classification models/algorithms 
+
+  + handling the issue of the rarity of fraudulent transactions.
+  + using fraud labels to train . 
+  + fraud index as a predictor variable.
+  + rare event logistic models.
+  + penalized tree-based classification models/algorithms.
+
+-	Unsupervised anomaly detection methods 
+  + using the distribution of fraud index to detect fraud: high quantile along with operational constraints.
+  + no need for handling imbalanced issues (fraud labels are not used) 
+
+-	Other probabilistic models/algorithms such as HMM.
+
+
+
+---
+#	Fraud Index Based on Historical Transactions
+
+<font color = "red"><b>How fraudulent activities alter genuine customers’ spending patterns.</b></font>
+
+<center><img src = "https://github.com/pengdsci/eCOTS2022/blob/main/alterPattern.png?raw=true"  width="600" height="300"><br>
+
+<font size =1 color = "navy"> Modified from: https://neo4j.com/blog/fraud-prevention-neo4j-5-minute-overview/</font></center>
+
+
+-	The transaction dollar amount is significantly different from that of genuine customers.
+
+-	The genuine customers spending frequency will be changed.
+
+-	The genuine customers’ transaction gap times (time between consecutive transactions) will be changed.
+
+
+
+
+
+
+---
+# What is Process Capability Index (PCI)?
+
+Process capability compares the output of an in-control process to the specification limits by using capability indices.
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/rollingPCI.png?raw=true">
+
+-	If the PCI of a process is under a threshold, the process is incapable.
+-	There are different PCIs for different processes.
+-	USL and LSL need to be estimated from a portion of data.
+
+
+---
+class: inverse, center, middle
+
+# A Numerical Example
+
+### Data Layout, Candidate Models, and Algorithms
+
+
+---
+
+#	The “Capability” of Customers’ Spending Process – Fraud Index
+
+Illustration: Defining a fraud index using historical payment dollar amounts.
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/fraudIdxDef.png?raw=true">
+
+
+---
+
+# Pre-processed Data (Long Table)
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/rawData.png?raw=true">
+
+
+---
+
+# Data Matrix 
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/dataMatriix.png?raw=true">
+
+
+---
+class: inverse, center, middle
+
+# A PCI-like Fraud Index Using Payment Amount
+
+
+
+## 
+$$idx=\frac{(USL-\mu)^2}{9(\mbox{max} - \mu)^2+(T-\mu)^2}$$
+
+
+
+### USL, T: Estimated from the larger data.
+
+### max, $\mu$: Estimated from the smaller data.
+
+### Sample sizes of both data sets are tuning parameters
+
+
+---
+
+# How Fraud Index Works in Fraud Detection
+
+<video width="800" height="550" controls>
+  <source src="https://github.com/pengdsci/eCOTS2022/raw/main/IndexModelExample.mp4" type="video/mp4">
+</video>
+
+
+---
+
+# Distribution of Resulting Fraud Index
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/fraudDist.png?raw=true">
+
+- <font color = "red">The above figure indicates that the fraud index can be used as a standalone fraud detection algorithm with no structural parameters</font> - <font color = "blue"><b>an unsupervised anomaly detection.</b></font>
+
+---
+
+# Performance Analysis
+
+<center><img src = "https://github.com/pengdsci/eCOTS2022/blob/main/liftAnalysis.png?raw=true"  width="600" height="400"></center>
+
+- Consideration of multivariate fraud index to incorporate gap time and spending frequency to boost the discriminatory power of the index.
+
+---
+# Supervised Algorithms and Models
+
+
+The fraud index will be used as a feature variable.
+
+Models and algorithms need to account for imbalance labels.
+
+- Firth penalized logit models.
+
+- King and Zeng's rare event logistic model.
+
+- Qing's semi-parametric logistic model.
+
+- penalized tree-based algorithm (including BAGGING. RF is not an option for this particular case).
+ 
+- regular logit models based on over-/under sampled data.
+
+- asymmetric-link GLMs.
+
+
+---
+class: inverse, center, middle
+
+# Deployment / Monitoring and Updating
+
+
+
+---
+# Deployment Workflow & Improvement
+
+
+- Deploying algorithms and models is only a component of the DM process. 
+
+
+<img src = "https://github.com/pengdsci/eCOTS2022/blob/main/deployment-chart.png?raw=true">
+
+
+- The Champion/challenger scheme in the real world DM systems.
+
+- Continuous updating models/algorithms - retraining/retesting
+
+- Importance of automation in the DM process.
+
+
+---
+class: inverse, center, middle
+
+# Learning by Doing!
+
+---
+# Student's Project Ideas
+
+There are many moving parts in the definition of the fraud index and the ways of using it. Even with the same data, students can build their projects using the combination of the following 
+
+- Methods of estimating USL and LSL
+
+- One-sided fraud indexes?
+
+- parametric and parametric indexes?
+
+- Supervise methods using both labels and index
+
+  + statistical models
+  
+  + machine learning algorithms
+
+- Index as a standalone algorithm - high quantile decision boundary
+
+  + parametric distribution of the indexes
+  
+  + non-parametric distribution of the indexes
+
+
+---
+class: inverse, center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+

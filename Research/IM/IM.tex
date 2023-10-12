@@ -1,0 +1,909 @@
+ \documentclass[11pt]{article}
+%\documentclass[12pt,preprint]{aastex}
+       %% manuscript produces a one-column, double-spaced document:
+%\documentclass[manuscript]{aastex}
+      %% preprint2 produces a double-column, single-spaced document:
+%\documentclass[preprint2]{aastex}
+%\documentclass{biometrika}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{polynom} %package for polnomials
+%\usepackage{amsthm}  % AMS theorem style file
+\usepackage{biokaxthm}
+% "biokaxthmthm.sty" is a modified version of "amsthm.sty", by changing "headfont" \bfseries to \sc
+                    % to get Biometrika theorem style
+\usepackage{newlfont}
+\usepackage{comment}
+%\usepackage{oxford}
+\usepackage{biometrika}
+%\usepackage[default, none]{oxford}
+\usepackage{natbib}
+\input{colordvi}  %with this we can use color in both dvi and pdf files, see colordvi.tex
+%\usepackage{hyperref}
+\usepackage{epsfig}         %used for LaTeX 2e
+%\usepackage{epsf}          % used in LaTeX 2.09
+\usepackage{graphicx}
+%\usepackage{color}
+\usepackage{bm}    %Bold Math Symbol package
+%\usepackage{euler}  %
+\usepackage{eucal}   %change the appearence of \cal and \mathcal
+%\bibliographystyle{biometrika}
+%\bibliographystyle{AISM} % Annals of the Institute of Statistical Mathematics
+\bibliographystyle{kluwer}
+%\bibliographystyle{jphysicsB}
+%\bibliographystyle{jurunsrt}
+%\bibliographystyle{CanadianJStat} %BibTeX style for Canadian Journal of Statistics
+%\bibliographystyle{alpha}
+%\bibliographystyle{abbrvnat}
+%\bibliographystyle{plannat}
+%\bibliographystyle{unsrtnat}
+%\bibliographystyle{ims}
+        %BibTeX style for journals published by the Institute of Mathematical Statistics
+        %(Annals of Statistics, Annals of Probability, and Annals of Applied Probability).
+%\bibliographystyle{asa}
+        %BibTeX style for the Journal of the American Statistical Association (JASA)
+        %and other journals from the American Statistical Association
+        %(The American Statistician, Journal of Agricultural, Biological and
+        %Environmental Statistics, Journal of Business & Economic Statistics,
+        %Journal of Computational and Graphical Statistics, and Technometrics
+%\bibliographystyle{rss}  %BibTeX style for the Journal of the Royal Statistical Society (JRSS).
+%\bibliographystyle{oxford_en}
+
+
+\setlength{\oddsidemargin}{0.0in}      % left margin, odd pages
+\setlength{\evensidemargin}{0.0in}     % left margin, even pages
+\setlength{\topmargin}{-0.1in}        % add to default 1 in
+\setlength{\textheight}{22cm}           % height of text on page
+\setlength{\textwidth}{16cm}          % width of text on page
+%\setlength{\parskip}{2.3ex}            % vertical space between paragraphs
+%\setlength{\parindent}{0in}            % amount of indentation of paragraph
+% Fuzz -------------------------------------------------------------------
+\hfuzz2pt % Don't bother to report over-full boxes if over-edge is < 2pt
+% Line spacing -----------------------------------------------------------
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+\newcommand{\setlinespacing}[1]%
+           {\setlength{\baselineskip}{#1 \defbaselineskip}}
+\newcommand{\doublespacing}{\setlength{\baselineskip}%
+                           {1.5 \defbaselineskip}}
+\newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
+
+% MATH -------------------------------------------------------------------
+\newcommand{\A}{{\cal A}}
+\newcommand{\h}{{\cal H}}
+\newcommand{\s}{{\cal S}}
+\newcommand{\W}{{\cal W}}
+\newcommand{\BH}{\mathbf B(\cal H)}
+\newcommand{\KH}{\cal  K(\cal H)}
+\newcommand{\Real}{\mathbb R}
+\newcommand{\Complex}{\mathbb C}
+\newcommand{\Field}{\mathbb F}
+\newcommand{\RPlus}{[0,\infty)}
+%
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\text{\rm\normalshape ess}}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\Poly}{{\cal{P}}(E)}
+\newcommand{\EssD}{{\cal{D}}}
+\def\o*{o_{{\!}_{P^*}}}
+\def\O*{\cal O_{{\!}_{P^*}}}
+\def\op{o_{{\!}_{P}}}
+\def\Op{\cal O_{{\!}_{P}}}
+\def\E{\mathrm{E}}
+\def\Var{\mathrm{Var}}
+\def\Cov{\mathrm{Cov}}
+\def\MISE{\mathrm{MISE}}
+\def\P{\mathrm{Pr}}
+\def\s{\sigma}
+\def\toinD{\stackrel{d}{\longrightarrow}}
+\def\eqinD{\stackrel{\cal D}{=}}
+\def\toinP{\stackrel{ P }{\longrightarrow}}
+\def\toAS{\stackrel{ \mbox{\it{a\.s\.}} }{-\!\!-\!\!\!\longrightarrow}}
+\def\iid{\stackrel{ iid }{\sim}}
+\def\.{\mbox{.}}
+\def\bbeta{\bm{\beta}}
+\def\l{\left}
+\def\r{\right}
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\sfrac(#1,#2){\mbox{$\frac{#1}{#2}$}}
+\def\multsp{\,}
+\def\tr{{\mbox{\tiny{$\mathrm{T}$}}}}
+\def\ie{\textit{i.e. }}
+\def\eg{\textit{e.g. }}
+\def\etal{\textit{et al. }}  %=et alii=and others
+\def\etalibi{\textit{et alibi }}  %=and elsewhere
+%\let\@period=.
+%\def\period{\hbox{\@period}}
+%\mathcode`\.="8000 {\catcode`\.=\active\gdef.{\bio@period}}
+%\def\bio@period{\ifmmode{\cdot}\else\@period\fi}
+% THEOREMS ---------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}% [section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+%
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+%
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+%
+\theoremstyle{definition}
+\newtheorem{example}{\bf Example}
+
+%\numberwithin{equation}{section}
+%\renewcommand{\thesection}{\arabic{section}.}
+%\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\baselinestretch}{1.5}
+%\renewcommand{\theequation}{\arabic{chapter}.\arabic{section}.\arabic{equation}}
+\title{ \bf Semiparametric Prediction with Retrospective Logit Models}
+\author{Cheng Peng \\
+ { \small{Department of Mathematics,}}\vspace{-2mm}
+{\small West Chester University}\\\vspace{-2mm}
+\small 25 University Avenue,  West Chester, PA 19383, USA \\
+cpeng@wcupa.edu}
+
+
+\begin{document}
+
+\maketitle
+%\centerline{\large Summary}
+
+\begin{abstract}
+%\textbf{Summary}
+We unify the four commonly used polychotomous logistic regression (PLR) models, namely,
+baseline-logit, adjacent-logit, cumulative logit and continuation ratio,
+and define a super structure for polychotomous logistic regression models
+under case control data. Zhang's (2000) information matrix test of goodness-of-fit
+for retrospective binary logistic regression models has been extended
+to assess the goodness-of-fit of the proposed polychotomous logistic models.
+Some numerical and simulation will also be presented.\\
+\end{abstract}
+{\em AMS 2000 subject classifications.} Primary 62F12; 62J12; 62P10
+\\
+\\
+\textbf{Keywords} {polychotomous logistic model, case-control study,
+semiparametric model, goodness-of-fit, information matrix test, noncentral chi-square.  }
+
+
+%%%%%%%%%%%%%%%%%  main text  %%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:1} The binary logistic regression model has been extremely
+attractive and played an important role in many practical areas such
+as biomedical, social sciences, political science, etc. It model the
+log odds of observing the outcome of interest from the possible outcome
+adjusted (controlled) by some risk factors. Let $Y$ be the response
+variable taking either value 2 (disease, success, etc.) or value 1
+(non-disease, failure, etc) and ${\mathbf{X}}$ be the $p$-dimensional vector
+of risk factors affecting the probabilities of observing $Y=2$. Let $\alpha$
+and {\boldmath $\beta$} be the regression coefficients. The $p$-dimensional vector
+{\boldmath $\beta$} usually called the log-odds ratio parameter associated with
+the $p$-risk factors. The binary logistic regression model is defined as
+\begin{equation}
+\log \frac{P(Y=2|\mathbf{X} = \mathbf{x})}{1-P(Y=1|\mathbf{X} = \mathbf{x})}
+=\alpha + {\mbox{\boldmath $\beta$}}^T\mathbf{x}\label{binarylogistic}
+\end{equation}
+Let $\pi_i(\mathbf{x})= P(Y=i |\mathbf{X}=\mathbf{x})$ for $i=1,2$. Clearly
+$\pi_0(\mathbf{x})+\pi_1(\mathbf{x})=1$. Using the notation of cell probability
+$\pi_i(\mathbf{x})$, we can re-express (\ref{binarylogistic}) as
+\begin{equation}
+\log \frac{\pi_2(\mathbf{x})}{1-\pi_2(\mathbf{x})}=
+\log \frac{\pi_2(\mathbf{x})}{\pi_1(\mathbf{x})}=\alpha +  {\mbox{\boldmath $\beta$}}^T\mathbf{x}
+\end{equation}
+That is, the binary logistic regression model links the log odds of observing $Y=1$ (disease) with
+a linear combination risk factors $\alpha +  {\mbox{\boldmath $\beta$}}^T\mathbf{x}$ and $\alpha$ and
+{\boldmath $\beta$} are naturally called odds ratio parameters. {\boldmath $\beta$} reflect the contribution
+of associated risk factors to the odds ratio. Note that if we link the log of odds of observing $Y=0$ with a linear predictor, then we have
+\begin{equation}
+\log \frac{\pi_1(\mathbf{x})}{1-\pi_2(\mathbf{x})}=
+\log \frac{\pi_1(\mathbf{x})}{\pi_2(\mathbf{x})}=\alpha^* +  {\mbox{\boldmath $\beta$}}^{*T}\mathbf{x} \label{binarylogistic02}
+\end{equation}
+Since $\alpha^*=-\alpha$ and ${\mbox{\boldmath $\beta$}}^* = - {\mbox{\boldmath $\beta$}}^{*}$, model (\ref{binarylogistic}) and model (\ref{binarylogistic02}) are equivalent.
+
+In many practical situations, there are more than two categories for the response variable Y. For instance, in epidemiologic study, the variable of interest may be the disease severity taking values non-disease (1), mild (2),
+moderate (3), and severe (4). We can use similar approach to link the odds of observing certain disease
+severity with a linear predictor. There are several ways to define logits according the ordinality of the response
+variable Y. For the nominal response $Y$ with $J$ categories,  we can select any category, say the category $J$, as the reference and define log odds (restricted to the two selected categories) similar to (\ref{binarylogistic}).
+\begin{equation}
+\log \frac{\pi_j(\mathbf{x})}{\pi_J(\mathbf{x})}=\alpha_j +  {\mbox{\boldmath $\beta$}}_j^{T}\mathbf{x}, \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{baselinelogit}
+\end{equation}
+which is usually called {\em generalized logit model or baseline logit model}.  Since $Y$ has $J$ categories, we need $J-1$ log odds to fully specify the model. When $J=2$, (\ref{baselinelogit}) reduces to (\ref{binarylogistic}). This model has been studied and applied to different subject areas, to name a few, by \cite{MCCULLAGH-OrdinalReg-Discussion-1980}, \cite{Anderson-JRSSS-1984}, \cite{Begg-Gray-Biometrika-1984}, \cite{Fienberg-book-1978}, and among others.
+
+For ordinal variable $Y$, three models with practical meaning are defined by incorporating the ordinal information. The first of these models is called {\em adjacent logit model} having the following definition
+\begin{equation}
+\log \frac{\pi_j(\mathbf{x})}{\pi_{j+1}(\mathbf{x})}=\alpha_j +  {\mbox{\boldmath $\beta$}}_j^{T}\mathbf{x}, \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{adjacentlogit}
+\end{equation}
+The adjacent logit model uses the ordinal information in $Y$, but it can be, in fact, expressed into a baseline logit model  \citep{Aggresti-CDA-2002}. In other words, we can fit generalized logit model to a data and then use relationship between the regression coefficients of the two models to get fitted adjacent logit model, and vice versa. Since $Y$ is ordinal, it is meaningful to define cumulative probability $\gamma_j(\mathbf{x})=P(Y \le j)=\sum_{k=1}^j\pi(\mathbf{x})$. The next ordinal logit model is defined based on $\gamma_j(\mathbf{x})$ with the following form
+\begin{equation}
+\log \frac{\gamma_j(\mathbf{x})}{1-\gamma_j(\mathbf{x})}=\alpha_j +  {\mbox{\boldmath $\beta$}}_j^{T}\mathbf{x}, \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{cumulativelogit}
+\end{equation}
+where $\alpha_1\le \alpha_2 \le \cdots \le \alpha_{J-1}$ which guarantees that the fitted probabilities are non-negative. This model link the log of odds of observing response Y beeing lower than the $j$-th category with a linear predictor. It is essentially a binary logistic model for each specific choice of $j$. Since it is defined based on cumulative response probability, it is naturally called {\em cumulative logit model} in literature. \cite{MCCULLAGH-OrdinalReg-Discussion-1980} pointed this model to be a {\em proportional odds} model when the log-odds ratio parameters are assumed to be constant across all $J-1$ logits (${\mbox{\boldmath $\beta$}}_j={\mbox{\boldmath $\beta$}}$) since
+\begin{equation}
+\frac{\gamma_j(\mathbf{x}_1)/(1-\gamma_j(\mathbf{x}_1))}{\gamma_{j}(\mathbf{x}_2)/(1-\gamma_{j}(\mathbf{x}_2))}=
+\exp(-\mbox{\boldmath $\beta$}^{T}(\mathbf{x}_1-\mathbf{x}_2)), \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{PropOdds}
+\end{equation}
+Note that if $Y$ represents the discrete the survival time, $(1-\gamma_j(\mathbf{x}_1))$ becomes survival function. Therefore, model (\ref{PropOdds}) can be used to model discrete survival time. Recently, \cite{Martshall-Olkin-1997} used the idea of the definition of proportional odds model to proposed a general methods to expanding existing parametric families. The last model we will cover in this paper is usually called {\em continuation ratio logistic regression} in literature, see for example, \cite{Fienberg-book-1978}, \cite{MCCULLAGH-OrdinalReg-Discussion-1980}, \cite{Aggresti-CDA-2002}, and among others. The definiton for the model is given by
+\begin{equation}
+\log \frac{\pi_j(\mathbf{x})}{1-\gamma_j(\mathbf{x})}=\alpha_j +  {\mbox{\boldmath $\beta$}}_j^{T}\mathbf{x}, \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{ContinuatioRatio}
+\end{equation}
+or
+\begin{equation}
+\log \frac{\pi_{j+1}(\mathbf{x})}{\gamma_{j}(\mathbf{x})}=\alpha_j +  {\mbox{\boldmath $\beta$}}_j^{T}\mathbf{x}, \hspace{3mm}\mbox{for}\hspace{3mm} j =1, 2, \cdots, J-1. \label{ContinuatioRatio_01}
+\end{equation}
+Unlike ordinal PLR models (\ref{adjacentlogit}) and (\ref{cumulativelogit}) having {\em palindromic invariant} property, the continuation ratio logistic model does not possesses this property. Reversing the response $Y$ in continuation ratio model yields inequivalent models. Therefore, (\ref{ContinuatioRatio}) and (\ref{ContinuatioRatio_01}) are not equivalent even though the inferential procedures for them are the same. Because of the irreversibility of the response $Y$ in the continuation ratio model, it has a special attraction to the cases in which the response has natural special hierarchical structure. In the rest of the discussion, we only focus on continuation ratio logistic model (\ref{ContinuatioRatio}). The continuation ratio logistic model has been receiving considerably attention from researchers in different areas, such as \cite{Hemker-MeasurementContinuationRatio-2001}, \cite{Tutz-SeqCateReg-CSDA-1991}, \cite{Kvist-Gislason-Thyregod-2000}, \cite{Rindorf-Lewy-2001} and \cite{Cox-StatMed-1988}.
+
+Since these polychotomous logistic regression models consist of a sequence of binary logits according to the ways of using the ordinality of the response, fitting these models to prospective datasets is similar to fitting a binary logistic regression model using any general purpose statistical packages. Pearson and deviance $\chi^2$ are the standard tests for goodness-of-fit. However, in many situations, it is either impractical or impossible to collect data prospectively. For instance, in epidemiologic study, if the disease under investigation is rare (one out one million)or has a extremely long latency (30 years), take data prospectively will end up with either very few cases or 30 years of waiting time for the disease development. \cite{Farewell-LogisticRetrospective-Biometrika-1979} and \cite{Prentice-Pyke-LogisticCasecontrol-Biometrika-1979} systematically investigated the ways of fitting the logistic regression model to retrospective data and concluded that it is valid to fit the logistic regression model to the retrospective data as if it were collected prospectively, but the inference on the intercept parameter is not possible unless the sampling fractions are given. \cite{Scott-Wild-CaseControl-ChoiceBasedSampling-JRSSSB-1986} pointed out that such approach is sensitive to model misspecification.
+
+Using empirical likelihood method \citep{Owen-Biometrika-1988,Owen-Ann-1990}, \cite{Qin-Zhang-Biometrika-1997} proposed a profiled semiparametric empirical likelihood method combining estimation and a Kolmogorov-Smirnov type goodness-of-fit test for the retrospective loistic regression model. In the same direction, \cite{ZhangBiao-JMA-2002,ZhangBiao-AustrNZJS-2004} and \cite{Peng-Zhang-JSPI-2008} studied generalized logit, proportional odds and continuation ratio logistic regression based on case-control data respectively. Since there is no analytical expression for proposed Kolmogorov-Smirnov test statistic, a Bootstrap procedure was used to establish the decision rule.
+
+In this paper, we first define a unified structure of the aforementioned four retrospective polychotomous logistic regression models based on the work of \cite{ZhangBiao-JMA-2002,ZhangBiao-AustrNZJS-2004} and \cite{Peng-Zhang-JSPI-2008} and then extend \cite{ZhangBiao-Biometrika-2001} information matrix test of goodness of fit to the unified structure of retrospective polychotomous logistic regression models. In Section 2, we propose a unified structure of retrospective polychotomous logistic regression models and the asymptotic results of the semipaarametric empirical likelihood estimators. In Section 3, we establish the information matrix equality. Construction of information matrix test statistic ($\chi^2$) will be presented in Section 4. Some numerical results based on real-life data and power analysis based on a local alternative via simulation study are given in Section 5, Section 6 includes summary and concluding remarks. Technical details are given in the appendix.
+
+\section{Unified Structure of Retrospective PLR and Summary of Existing Asymptotic Results}\label{sec2}
+In this section, propose a unified structure for retrospective PLR models. Since the the adjacent logit and the generalized logit models are equivalent in the sense that one can be converted to the other since the regression coefficients in both models have a one-to-one linear relationship (see, for example, Agresti, 2002, pages 286-287). Throughout this paper PLR means generalized logit, proportional odds and continuation ratio logistic regression models.
+\subsection{The Unified Structure of PLR}
+Let $\{X_{i1}, X_{i2}, \cdots, X_{in_i}\}$ be the random sample collected from the $i$-th population ($i$-th category of $Y$) for $ i = 1, \cdots, I $. Assume further that these samples are jointly independent. Denote $P(Y =i)=\tau_i$, the population proportion of $i$-th category,  for $i=1, \cdots, I$. According to Bayes Theorem, we have
+\begin{equation}
+P(X|Y =i)=\frac{P(Y =i|X) \cdot P(X)} {P(Y=i)}=\frac{\pi_i(X)P(X)}{P(Y=i)}. \label{Bayes}
+\end{equation}
+Let $f_i(x)$ and $f(x)$ be the density functions of $X$ given that $Y=i$ and $X$ respectively. For $i=1, \cdots, I-1$, we define $\omega_i=\log[P(Y=i)/P(Y=I)]$ to be the sampling fraction based on $i$-th and $I$-th subpopulations. Let $\theta_i=(\alpha_i,\beta_i^T)^T$, $\theta=(\theta_1^T, \cdots, \theta_{I-1}^T)^T$,
+$\gamma=(\gamma_1, \gamma_2, \cdots, \gamma_{I-1})^T$. Re-expressing (\ref{baselinelogit}), (\ref{cumulativelogit}) and (\ref{ContinuatioRatio}) in terms of $\pi_i(x)$ and solving for $\pi_i(x)$ by using the fact that $\sum_{i=1}^I \pi_i(x)=1$, and plugging $\pi_i(x)$ in (\ref{Bayes}), we get the following $I$-sample semiparametric model (see Zhang, 1999, 2001 and Peng \& Zhang 2008 for details),
+\begin{equation}
+\left\{ \begin{array}{llll}
+$$X_{I1}, \cdots, X_{In_I} \stackrel{\mathrm{ i.i.d.}}{\sim}f_{I}(x),\hspace{1.in}$$\\
+$$X_{i1}, \cdots, X_{in_i} \stackrel{\mathrm{ i.i.d.}}
+  {\sim} \exp\big(\gamma_i+g_i(x,\theta)\big)\cdot f_I(x),
+  \hspace{5mm}\mbox{for}\hspace{3mm} i = 1, \cdots, I-1,$$
+\end{array}\right.
+\label{RetrospectivePLR}
+\end{equation}
+\noindent where, for the generalized logit model,
+\begin{equation}
+g_i(x) = \beta_i^T x \label{gfunction_GL}
+\end{equation}
+and $\gamma_i=\alpha_i + \omega_i$; for the proportional odds model,
+\begin{equation}
+g_i(x) = \log\Big(\frac{s_i(x,\alpha,\beta)-s_{i-1}(x,\alpha, \beta)}{s_I(x, \alpha, \beta)-s_{I-1}(x,\alpha, \beta)}\Big)\label{gfunctionPO}
+\end{equation}
+with $s_i(x, \alpha, \beta)=\exp(\alpha_i+\beta^T x)/[1+\exp(\alpha_i+\beta^T x)]$ and $\gamma_i=\omega_i$; for the continuation model,
+\begin{equation}
+g_i(x,\theta)=\left\{\begin{array}{lllll}
+$$ \beta_1^T x+\sum_{l=2}^{I-1}\log[1+\exp(\alpha_l+\beta^T x)], & i=1, $$\\
+$$\alpha_i+\beta_i^T x+\sum_{l=i+1}^{I-1}\log[1+\exp(\alpha_l+\beta^T x)] & i=2, \cdots, I-2, $$\\
+$$\alpha_{I-1}+\beta_{I-1}^T x, & \mbox{otherwise}.$$
+\end{array}
+\right. \label{gfunction_CR}
+\end{equation}
+and $\gamma_1=\alpha_1 + \omega_1$ and $\gamma_i=\omega_i$ for $i >1$.
+
+\rem It is customarily assumed the equal odds ratio parameter (across all logits) in the proportional odds model. That is $\beta=\beta^T_1= \beta^T_2=\cdots=\beta^T_{I-1}$  \citep{MCCULLAGH-OrdinalReg-Discussion-1980, ZhangBiao-AustrNZJS-2004}.
+
+\rem It is seen that, all intercepts in the retrospective generalized logit model are inestimable ($\gamma_i=\alpha_i + \omega_i$ for $i=1, \cdots, I-1$); only $\alpha_1$ in retrospective continuation ratio models is inestimable ($\gamma_1=\alpha_1 + \omega_1$), all intercepts in the retrospective proportional odds models are estimable ($\gamma_i=\omega_i$ for $i=1, \cdots, I-1$).
+
+\rem The parameters in the vector $\theta$ vary depending on the correct model. In retrospective generalized logit model, $\theta_i=\beta_i$ for all $i=1,2, \cdots, I-1$; in retrospective proportional odds model, $\theta_i=(\alpha_i,\beta_i^T)^T$ for all $i=1,2, \cdots, I-1$; in retrospective continuation ratio model, $\theta_1 = \beta_1$ and $\theta_i=(\alpha_i,\beta_i^T)^T$ for all $i=2, \cdots, I-1$. \label{model_parametrization}
+
+\subsection{Model Estimation and Some Asymptotic Results}
+For $i =  1, \cdots, I$, let $F_i(x)$ be the corresponding cumulative distribution of $f_i(x)$, $\{T_1, \cdots,
+T_n \}$ be the pooled sample $\{X_{11}, \cdots, X_{1n_1};\cdots; X_{I1}, \cdots, X_{In_I}\}$ with $n=\sum_{i=1}^In_i$, Then from model $(\ref{RetrospectivePLR})$ , we have following likelihood function
+$$ L(\gamma, \theta, F_I|\mathbf{X})=\Big[\prod_{i=1}^{I-1} \prod_{j=1}^{n_i}
+\exp\Big(\gamma_i+g_i(X_{ij};\theta)\Big)dF_I(X_{ij}) \Big]\Big[\prod_{j=1}^{n_I} dF_I(X_{Ij})\Big] $$
+\begin{equation}
+=\prod_{s=1}^n p_s \prod_{i=1}^{I-1} \prod_{j=1}^{n_i}\left\{\exp\Big[ \gamma_i+g_i(X_{ij};\theta )\Big]\right\},
+\label{lik}
+\end{equation}
+where $p_s=dF_I(t_s)$ is the empirical likelihood of $F_I(X)$ at point $t_s$ with $\sum_{s=1}^n p_s=1$, and $g_i(x;\theta)$ is specified respectively in (\ref{gfunction_GL}), (\ref{gfunctionPO}) and (\ref{gfunction_CR}) for $i=1, 2,\cdots, I$. The corresponding log-likelihood function is
+\begin{equation}
+l(\gamma,\theta, F_I) =\sum_{s=1}^n \log p_s + \sum_{i=1}^{I-1}n_i\gamma_i+ \sum_{i=1}^{I-1}\sum_{j=1}^{n_i}
+g_i(X_{ij},\theta)  \label{loglikelihood}
+\end{equation}
+The estimates of parameters $\theta$, $\gamma_i$ and the distribution $F_I(x)$ corresponding to the density function
+$f_I(x)$ will be obtained  by maximizing $l(\gamma, \theta, F_I)$ subject to the following constraints, for $s=1, 2, \cdots, n, i =1, 2, \cdots, I-1$,
+
+1.\hspace{3mm} $p_s \ge 0$, \hspace{3mm} 2.\hspace{3mm} $\sum_{s=1}^n p_s=1$,\hspace{3mm} 3.\hspace{3mm} $\sum_{s=1}^n p_s\big\{\exp[\gamma_i+g_i(T_s;\theta)]-1 \big\}=0$.
+We first use {\em Lagrange Multipliers} to maximize the log-likelihood function (\ref{loglikelihood}) with given
+constraints by fixing parameters first and get profile MLE of $p_s$
+\begin{equation}
+\hat{p}_s=\frac{1}{n_I}\cdot\frac{1}{1+\sum_{i=1}^{I-1}\rho_i\exp[\gamma_i+ g_i(T_s;\theta)]},\label{p_mle}
+\end{equation}
+where $\rho_i=n_i/n_I$ for $i=1,2, \cdots, I-1$. One can see that $\hat{p}_s$ is a function of data values and unknown parameters $\gamma$ and $\theta$. In (\ref{loglikelihood}) we substitute $\hat{p}_s$ for $p_s$ and get the following semiparametric profile empirical log likelihood function
+$$l(\gamma,\theta)=-n\log n_I-\sum_{s=1}^n\log\left\{1+\sum_{i=1}^{I-1}\rho_i\exp[\gamma_i+
+g_i(T_s; \theta)]\right\}+\sum_{i=1}^{I-1}\sum_{j=1}^{n_i}\Big[  g_i(X_{ij}, \theta) + \gamma_i \Big]. \label{parloglik}
+$$
+The corresponding score equations are given by, for $u=1, 2, 3,\cdots, I-1$,
+\begin{equation}
+n_u -\sum_{s=1}^n \frac{\rho_u\exp[\gamma_u+g_u(T_s;\theta)]} {1+\sum_{m=1}^{I-1}\rho_m\exp[\gamma_m+g_m(T_s,\theta)]}=0,
+\label{scoreEq1}
+\end{equation}
+\begin{equation}
+\sum_{i=1}^{I}\sum_{j=1}^{n_i}\Big[ \frac{\partial g_i(X_{ij};\theta)}{\partial
+\theta}-\frac{\sum_{m=1}^{I-1}\rho_m\exp[\gamma_m+g_m(X_{ij};\theta)]\cdot
+\partial g_m(X_{ij};\theta)/\partial\theta}{1+\sum_{m=1}^{I-1}\rho_m\exp[\gamma_m
++g_m(X_{ij};\theta)]} \Big]=0 .  \label{scoreEq2}
+\end{equation}
+The semiparametric MLE of $(\gamma, \theta)$, denoted by $(\tilde{\gamma}, \tilde{\theta})$, is a solution to the above system of score equations (\ref{scoreEq1}) and (\ref{scoreEq2}). Hence, the semiparametric empirical likelihood estimate of $p$ is given by
+\begin{equation}
+\tilde{p}_s=\frac{1}{n_I}\cdot\frac{1}{1+\sum_{i=1}^{I-1}\rho_i\exp[\tilde{\gamma}_i+ g_i(T_s;\tilde{\theta})]},\label{p_el_mle}
+\end{equation}
+The corresponding semiparametric estimate of $F_i(x)$ under retrospective polychotomous logistic regression model (\ref{RetrospectivePLR}) are, for $i=1, 2, \cdots, I-1$,
+\begin{equation}
+\tilde{F}_I(t)=\sum_{s=1}^n\tilde{p}I_{[T_s\le t]},\hspace{3mm}\tilde{F}_i(t)=\sum_{s=1}^n\tilde{p}\exp(\tilde{\gamma}_i+g_i(T_s:\tilde{\theta}))I_{[T_s\le t]}. \label{ELMLE_F_i}
+\end{equation}
+
+We assume that $n_i/n$ approaches to a constant when $n=\sum_{i=1}^I n_i \rightarrow \infty$, for $i=1,\cdots, I$.
+Denote $ \rho_u=\lim_{n\rightarrow \infty} n_u/n_I, \rho =\lim_{n\rightarrow \infty} \sum_{i=1}^{I-1} n_i/n_I, \gamma_I=0, g_I(x)=0$. Let $(\gamma_0, \theta_0)$ be the true value of $(\gamma, \theta)$. Furthermore, we define, for $u, v = 1, 2,\cdots, I,$
+\begin{equation}
+e_{u}(x)=\rho_u\exp[\gamma_{u}+ g_u(x,\theta)]\Big|_{\scriptstyle\gamma=\gamma_0 , \scriptstyle\theta=\theta_0};\label{e_u}
+\end{equation}
+\begin{equation}
+g_u^{\theta^T}(x)=\frac{\partial g_u(x,\theta)}{\partial \theta^T}\Big|_{\theta=\theta_0};\hspace{5mm}g_u^{\theta}(x)=\frac{\partial
+g_u(x,\theta)}{\partial \theta}\Big|_{\theta=\theta_0};
+\hspace{5mm}g_u^{\theta\theta^T}(x)=\frac{\partial^2
+g_u(x,\theta)}{\partial \theta\partial \theta^T}\Big|_{\theta=\theta_0};\label{g_derivative}
+\end{equation}
+$$
+e_{uv}(x)=\rho_u\exp[\gamma_{u}+ g_u(x,\theta)]\rho_v\exp[\gamma_{v}+g_v(x,\theta)]|_{\gamma=\gamma_0,
+\theta=\theta_0},\hspace{3mm}u\ne v;\label{e_uv}
+$$
+$$
+e_{uu}(x)=-\sum_{u \ne v, v=1}^{I}e_{uv}(x),\hspace{5mm}\mbox{for}\hspace{3mm}u=1,2,\cdots,I-1;
+$$
+\begin{equation}
+P(x)=\{1+\sum_{m=1}^{I-1 } \rho_m\exp[\gamma_{m}+g_m(x,\theta)]\}^{-1}\big|_{\gamma=\gamma_0,
+\theta=\theta_0};\label{P}
+\end{equation}
+$$
+a_{uv}=-\frac{1}{1+\rho}\int P(x)e_{uv}(x)dF_I(x);\hspace{5mm}\mbox{for} \hspace{3mm} u \ne v;\hspace{3mm}
+$$
+$$
+a_{uu}=-\sum_{u\ne v, v=1}^I a_{uv}, \hspace{5mm}\mbox{for}\hspace{3mm}u=1,2,\cdots,I-1;
+$$
+Consequently,
+$$
+a_{uI}=-\frac{1}{1+\rho}\int P(x)e_{u}(x)dG_I(x) =\sum_{v=1}^{I-1}a_{uv}\hspace{5mm}\mbox{for} \hspace{3mm}
+u=1,2,\cdots,I-1.
+$$
+\begin{equation}
+S_1=\Big(a_{uv} \Big)_{u,v=1, 2, \cdots, I-1}, \hspace{3mm} S_2=\big((\bm{a}_1^{(\theta)})^T,(\bm{a}_2^{(\theta)})^T,\cdots,
+(\bm{a}_{I-1}^{(\theta)})^T  \big)^T\label{S1_S2}
+\end{equation}
+where
+$$
+\bm{a}_u^{(\theta)}=\frac{1}{1+\rho} \int
+e_{u}(x)\Big(g_u^{\theta^T}(x)-P(x)\sum_{m=1}^{I-1}e_{m}(x)g_m^{\theta^T}(x)\Big)dF_I(x)
+$$
+\begin{equation}
+S_3=\frac{1}{1+\rho}\int\Big(\sum_{m=1}^{I-1}g_m^{\theta}(x)g_m^{\theta^T}(x)e_m(x)
+-P(x)\sum_{m=1}^{I-1}e_m(x)g_m^{\theta}(x)\sum_{m=1}^{I-1}e_m(x)g_m^{\theta^T}(x)\Big)dF_I(x).\label{S3}
+\end{equation}
+\begin{equation}
+\begin{array}{ccc} D=\mbox{diag} \big(\frac{1}{\rho_1}, \cdots, \frac{1}{\rho_{I}}  \big),
+&S=\frac{1}{1+\rho}\left(\begin{array}{cc} S_1 & S_2 \\
+S_{2}^T & S_3 \end{array} \right), & \Omega=\begin{pmatrix}
+D+U&O_1\cr O_1&O_2\end{pmatrix}.
+\end{array}\label{S_Omega}
+\end{equation}
+where U is the $(I-1)\times(I-1)$ matrix with all elements being 1, $O_1$ is an $\big[(I-1)(p+1)-1\big]\times (I-1)$ zero matrix, $O_2$ is an $\big[(I-1)(p+1)-1\big]\times \big[(I-1)(p+1)-1\big]$ zero matrix, $p$ is the number of parameters in the corresponding retrospective PLR model. With the above notations, we state the asymptotic normality of the estimators of the regression coefficients as follows
+
+ {\theorem \citep{ZhangBiao-JMA-2002, ZhangBiao-AustrNZJS-2004, Peng-Zhang-JSPI-2008} Under retrospective polychotomous logistic regression model (\ref{RetrospectivePLR}), we have
+$$n^{-1/2}\left( \frac{\partial l(\gamma_0, \theta_0))}{\partial \gamma^T},\frac{\partial l(\gamma_0, \theta_0)}{\partial \theta^T} \right)^T \rightarrow_P N(0,V) $$
+consequently,
+$$\sqrt{n}\left( \tilde{\gamma}^T-\gamma_0^T \hspace{3mm} \tilde{\theta}^T-\theta_0^T \right)^T \rightarrow_d N(0,\Gamma)$$
+\noindent where $V=S-(1+\rho)(S_1^T, S_2^T)(D+U)(S_1^T, S_2^T)^T$ and $\Gamma=S^{-1}-(1+\rho)\Omega$. $S_1, S_2, S$ and $\Omega$ are specified in (\ref{S1_S2}) and (\ref{S_Omega}).}
+
+\section{Information Matrix Equality}\label{sec3}
+In this section, we proposed a information matrix based generalized moment $\chi^2$ test to assess the fit of the retrospective PLR model (\ref{RetrospectivePLR}). \cite{White-1982} proposed a parametric information test using the fact that, under standard regularity conditions, the expectation of the score derivation matrix $U_n(\xi)=-n^{-1}\{\partial^2l(\xi)/\partial \xi \partial\xi^T\}$ and the score squared matrix $V_n(\xi)=n^{-1}\sum_{i=1}^n\{\partial l(\xi)/\partial\xi \}\{\partial l(\xi)/\partial\xi ^T \}$ are equal to the the information matrix if the model under study is correctly specified ($\xi$ is the vector of model parameters). \cite{Hausman-SpecificationTest-Economitrica-1978}, \cite{Hausman-McFadden-Specification-GLM-Economitica-1984}, \cite{Holly-SpecificationTest-Economitrica-1982}, \cite{Newey-GMSpecification-J-Economics-1985, Newey-MLE-CondMomentTest-Specification-Economitrica-1985}, and among authors studied this information test and applied it to econometrics. \cite{Lin-Wei-GOF-CoxModel-Sinica-1991} extend the \cite{White-1982} to partial likelihood set-up and use it to test goodness-of-fit for Cox models. \cite{ZhangBiao-Biometrika-2001} extends to semiparametric empirical likelihood case and use it to assess the model fit for retrospective binary logistic regression models. Here we  generalize \cite{ZhangBiao-Biometrika-2001} goodness-of-fit test to retrospective PLR models.
+
+Recall that $\theta_i=(\alpha_i,\beta_i^T)^T$, $\theta=(\theta_1^T, \cdots, \theta_{I-1}^T)^T$,
+$\gamma=(\gamma_1, \gamma_2, \cdots, \gamma_{I-1})^T$. For $i=1, 2, \cdots, I,$ and $j=1, 2, \cdots, n_i$, the
+log-likelihood of $\alpha$ and $\beta$ based on retrospective model (\ref{RetrospectivePLR}) at point $X_{ij}$ is defined to be
+\begin{equation}
+l_{ij}(\gamma, \theta)=\log \{ 1+\sum_{m=1}^{I-1}\rho_m\exp[\gamma_m+g_m(X_{ij},\theta)]
+\} +I_{[i<I]}\big[ \gamma_i+g_i(X_{ij},\theta)\big].\label{L_ij}
+\end{equation}
+Then the semiparametric profile log-likelihood can be written as
+$$l(\gamma,\theta)=n\log n_I-\sum_{i=1}^I\sum_{j=1}^{n_i}l_{ij}(\gamma,\theta).$$
+For the notational simplicity, denote $\phi=(\gamma^\tau, \theta^\tau)$ and $\phi_0=(\gamma_0^\tau, \theta_0^\tau)$.
+Furthermore, denote
+\begin{equation}
+U_n(\phi_0)=U_n(\gamma_0,
+\theta_0)=\frac{1}{n}\frac{\partial^2l(\phi_0)}{\partial \phi\phi^T} =\frac{1}{n} \left( \begin{array}{cc}
+\frac{\textstyle{\partial^2 l(\gamma_0, \theta_0)}} {\textstyle{\partial \gamma
+\partial \gamma^\tau}}  & \frac{\textstyle{\partial^2 l(\gamma_0, \theta_0)}}
+{\textstyle{\partial \gamma \partial \theta^\tau}} \\
+\frac{\textstyle{\partial^2 l(\gamma_0, \theta_0)}}{\textstyle{\partial \theta
+\partial \gamma^\tau}} & \frac{\textstyle{\partial^2 l(\gamma_0, \theta_0)}}{\textstyle{\partial \theta \partial \theta^\tau}}
+\end{array} \right)\label{Un}
+\end{equation}
+and
+$$V_n(\phi_0)=V_n(\gamma_0,\theta_0)=\frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}
+\{\frac{\partial l_{ij}(\phi_0)}{\partial\phi}\} \{\frac{\partial
+l_{ij}(\phi_0)}{\partial\phi^\tau} \}\hspace{1.3in} $$
+\begin{equation}
+= \frac{1}{n} \sum_{i=1}^I\sum_{j=1}^{n_i}\left(
+\begin{array}{cc}\frac{\textstyle{\partial l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial
+\gamma}}\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial \gamma^\tau}} &
+\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial
+\gamma}}\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial
+\theta^\tau}} \\
+\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial
+\theta}}\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial \gamma^\tau}} &
+\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial
+\theta}}\frac{\textstyle{\partial
+l_{ij}(\gamma_0,\theta_0)}}{\textstyle{\partial \theta^\tau}}
+\end{array}\right),\label{Vn}
+\end{equation}
+\noindent where The cell elements of (\ref{Un}) and (\ref{Vn}) are specified in
+the proof of the following information matrix equality given in the appendix.
+
+{\theorem Under model retrospective polychotomous logistic regression model (\ref{RetrospectivePLR}), we have
+\begin{equation}
+E\Big[U_n(\gamma_0,\theta_0) \Big]=- \left(\begin{array}{cc} S_{11}
+& S_{21}^T \\ S_{21}^T & S_{33}
+\end{array} \right)=- S
+\end{equation}
+and
+\begin{equation}
+E\Big[V_n(\gamma_0,\theta_0)\Big]= \left(\begin{array}{cc} S_{11} &
+S_{21}^T \\ S_{21}^T & S_{33}
+\end{array} \right)= S
+\label{squarescore}
+\end{equation}
+Consequently, the following {\em Information Matrix Equality} holds.
+\begin{equation}
+E\big(U_n(\gamma_0,\theta_0)+V_n(\gamma_0,\theta_0) \big)=0
+\end{equation}
+where $U_n(\gamma_0,\theta_0)$ and $V_n(\gamma_0,\theta_0)$ are
+score derivative matrix and squared score matrix respectfully. }
+
+Since the matrix $U_n(\gamma_0,\theta_0)+V_n(\gamma_0,\theta_0)$ is
+unobservable, we can estimate it by substituting values of the
+parameters $\gamma_0$ and $\theta_0$ with the consistent
+semiparametric estimates $\tilde{\gamma}$ and $\tilde{\theta}$. It
+is expected that the matrix is close to a zero matrix if our model
+fits the data well. By using this fact, we propose a a Wald-type
+test statistic to assess the global fit of the adjacent category
+logit model based on case-control data based on the difference
+between the estimated consistent semiparametric score derivative
+matrix $U_n(\tilde{\gamma},\tilde{\theta})$ and the squared score
+matrix $V_n(\tilde{\gamma},\tilde{\theta})$ to assess the fit of
+the model in the next section.
+
+
+\section{Construction of IM $\chi^2$ Test Statistics} \label{sec4}
+
+We will follow the approach of White (1982) and Zhang (2001) to
+construct the test statistic. Since the matrix
+$U_n(\tilde{\gamma},\tilde{\theta})+V_n(\tilde{\gamma},\tilde{\theta})$
+is symmetric, we now construct a test statistic based on the lower
+triangular elements of the matrix. Let $q$ be the number of
+parameters in the retrospective polychotomous logistic regression model. Denote
+$\phi=(\phi_1, \phi_2, \cdots, \phi_{q-1}, \phi_q)=(\gamma_1,
+\cdots, \gamma_I,\theta_1^T, \theta_2^T, \cdots,
+\theta_{I}^T)^T$ where $\theta_i$ is specified in remark \ref{model_parametrization}.
+Furthermore, let $k=v+(u-1)q)-u(u-1)/2, 1\le u\le v\le q$. It is seen that $k$ and the ordered pair $(u, v)$ have one-to-one correspondence. Define
+\begin{equation}
+d_{k}(\phi: X_{ij})=d_{uv}(\phi: X_{ij})=\frac{\partial^2l_{ij}(\phi:X_{ij})}{\partial
+\phi_u\partial \phi_v}-\frac{\partial
+l_{ij}(\phi:X_{ij})}{\partial\phi_u} \frac{\partial l_{ij}(\phi :
+X_{ij})}{\partial \phi_v}\label{cell-difference}
+\end{equation}
+$$D_{kn}(\phi:X_{ij})=
+\frac{1}{n}\sum_{i=0}^I\sum_{j=1}^{n_i}d_{uv}(\phi, X_{ij}), \hspace{4mm}\mbox{where}\hspace{3mm} k=v+(u-1)q)-u(u-1)/2.$$
+The explicit expression of $d_{k}(\phi:X_{ij})$ can be found in the proof of the information matrix equality theorem in the appendix. Using the one-to-one correspondence between $k=v+(u-1)q)-u(u-1)/2, 1\le u\le v\le q$ and the ordered pair $u,v$, we define the $s=q(q+1)/2$ dimensional random vector based on the elements in the upper triangular portion (including the main diagonal elements) of $U_n(\phi) + V_n(\phi)$ as follows
+\begin{equation}
+D_n(\phi: X_{ij})=\big(D_{1n}(\phi: X_{ij}),
+D_{2n}(\phi: X_{ij}),\cdots, D_{sn}(\phi: X_{ij})\big),
+\hspace{5mm} \tilde{D}_n(\phi)=D_n(\tilde{\phi}: X_{ij})
+\end{equation}
+where $\tilde{\phi}$ is the semiparametric empirical likelihood estimate derived from (\ref{scoreEq1}) and (\ref{scoreEq2}). Since the log likelihood function function is third order differentiable, the partial derivatives and the expected matrix exist. For notational convenience, we suppress the notation in (\ref{L_ij}) as $l_0(\phi:X_{ij})=l_{ij}(\gamma, \theta)$. We define,
+\begin{equation}
+\nabla D_{nk}(\alpha,\beta)=\frac{\partial
+D_{nk}(\alpha,\beta)}{\partial \phi}=\left(\frac{\partial D_{kn}(\phi: X_{ij})}{\partial \phi_1}, \cdots,  \frac{\partial D_{kn}(\phi: X_{ij})}{\partial \phi_q} \right)
+\end{equation}
+\noindent where, for $l=1, 2, \cdots, q$,
+$$
+\frac{\partial D_{kn}(\phi: X_{ij})}{\partial \phi_l}=\frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}\left( \frac{\partial^3l_0(\phi, X_{ij})}{\partial \phi_l\partial \phi_u\partial \phi_v }-
+\frac{\partial^2l_0(\phi, X_{ij})}{\partial \phi_l\partial \phi_u}\frac{\partial l_0(\phi, X_{ij})}{\partial \phi_v} - \frac{\partial l_0(\phi, X_{ij})}{\partial \phi_u}\frac{\partial^2l_0(\phi, X_{ij})}{\partial \phi_l\partial \phi_v}\right)
+$$
+The above first, second and third order (partial) derivatives of $l_0(\phi: X_{ij})$ can be explicitly expressed in terms of data values and the values of parameters. Define
+\begin{equation}
+b= E\left( \frac{\partial D_{n}(\phi,X_{ij})}{\partial \phi}\right)=\left( b_{kl} \right)\hspace{5mm}\mbox{for}\hspace{3mm} 1\le k \le s, 1 \le l \le q.
+\end{equation}
+\noindent Clearly, $\nabla D(\phi)$ is an $s\times q$ matrix with cell elements specified by
+$$
+b_{kl}=\frac{1}{1+\rho}\int\sum_{i=1}^I\left( \frac{\partial^3l_0(\phi, x)}{\partial \phi_l\partial \phi_u\partial \phi_v }-\frac{\partial^2l_0(\phi, x)}{\partial \phi_l\partial \phi_u}\frac{\partial l_0(\phi, x)}{\partial \phi_v} - \frac{\partial l_0(\phi, x)}{\partial \phi_u}\frac{\partial^2l_0(\phi, x)}{\partial \phi_l\partial \phi_v}\right)dF_i(x)x.
+$$
+We need few more notations before presenting the main result. Denote
+$$\Psi_1=(\varphi_{kk^\prime}), \hspace{3mm} \Lambda=(\pi_{kw}),\hspace{3mm}\mbox{for}\hspace{3mm} 1\le k, k^\prime \le s, 1 \le w \le q $$
+\noindent be $s \times s$ and $s \times q$ matrices with, as usual, $k=v+(u-1)q-u(u-1)/2, k^\prime=v^\prime+(u^\prime-1)q-u^\prime(u^\prime-1)/2$ and
+$$
+\varphi_{kk^\prime}=\sum_{i=1}^I\left(\frac{\rho_i}{1+\rho}\right)^2\int d_{uv}(\phi:x)d_{u^\prime v^\prime}(\phi: x)dF_i(x)\hspace{2in}
+$$
+$$
+\hspace{1.5in}+\sum_{1 \le i \ne i^\prime \le I}\frac{\rho_i\rho_{i^\prime}}{(1+\rho)^2}\int d_{uv}(\phi_0:x)dG_i(x)\int d_{u^\prime v^\prime}(\phi_0:x)dF_{i^\prime}(x)
+$$
+$$
+\pi_{kw}=\sum_{i=1}^I\left(\frac{\rho_i}{1+\rho}\right)^2\int\rho_id_{uv}(\phi:x)\frac{\partial l(\phi:x)}{\partial \phi_w}dF_i(x)\hspace{2in}
+$$
+$$
+\hspace{1.5in}+\sum_{1 \le i \ne i^\prime \le I}\frac{\rho_i\rho_{i^\prime}}{(1+\rho)^2}\int d_{uv}(\phi_0:x)dG_i(x)\int \frac{\partial l(\phi_0:x))}{\partial \phi_w}dF_{i^\prime}(x)
+$$
+Define
+$$\Sigma=\Psi_1 + b^T[S^{-1}-(1+\rho)\Omega]b-2\Lambda S^{-1}b$$
+
+Based on the above notations, we state the main result as follows
+\begin{theorem}
+Assume the retrospective polychotomous logistic regression model (\ref{RetrospectivePLR}) and $\tilde{\phi}=(\tilde{\gamma}, \tilde{\theta})$ is the semiparametric likelihood estimate of $\phi=(\gamma, \theta)$. We have
+\begin{equation}
+\sqrt{n}D_n(\tilde{\phi})=\sqrt{n}\left[ D_n(\phi_0)
++\frac{1}{n}b^T S^{-1}\frac{\partial l(\phi_0)}{\partial \phi
+}\right]+o_p(1)\rightarrow N_s(0,\Sigma).\label{Q_Normality}
+\end{equation}
+Furthermore, if $\Sigma^{-1}$ exists, we have
+\begin{equation}
+n\big[D_n(\tilde{\phi})\big]^T \Sigma^{-1}(\tilde{\phi})D_n(\tilde{\phi})\rightarrow
+\chi_s^2
+\end{equation}
+\end{theorem}
+\noindent {\em Proof} \hspace{3mm} See the appendix.
+
+\noindent The one dimensional statistic $n\big[D_n(\tilde{\phi})\big]^T \Sigma^{-1}(\tilde{\phi})D_n(\tilde{\phi})$ measures the discrepancy between the true model (\ref{RetrospectivePLR}) and any incorrect model. The level of significance can be evaluated through the asymptotic distribution.
+
+Since the covariance matrix $\Sigma$ is unobservable, we can use the sample version
+$\tilde{\Sigma}$ by substituting the true value of parameter
+$(\phi)$ with the semiparametric estimate $(\tilde{\phi})$, in the calculation of the
+covariance matrix, we need the cumulative distribution functions
+$F_i(x), i=1, 2, \cdots, I-1$. We can replace $F_i(x)$ by our
+semiparametric estimators specified in (\ref{ELMLE_F_i}). If we
+replace the consistent semiparametric estimate $\tilde{\Sigma}$ of
+$\Sigma$ and assume further that the inverse of
+$\tilde{\Sigma}(\tilde{\phi})$ exists, then
+$$\big[\tilde{D}_n(\tilde{\phi})\big]^T \tilde{\Sigma}^{-1}(\tilde{\phi})\tilde{D}_n(\tilde{\alpha}, \tilde{\beta})\rightarrow
+\chi_s^2$$
+
+\begin{rem}
+If some of of the elements in the matrix $ \tilde{Q}_n$ are linear
+combinations of the others, then the estimated covariance matrix
+would be singular. In this case, we replace $\tilde{\Sigma}^{-1}$
+with the generalized inverse matrix $\tilde{\Sigma}^{+1}$. So we
+will lose some degrees of freedom. The asymptotic distribution of
+$D_n(\tilde{\phi})$ is still a $\chi_r^2$
+distribution with degrees of freedom $r\le s$.
+\end{rem}
+
+\section{A Case Study and Numerical Results}\label{sec5}
+In this section we study the power of the proposed information matrix test under a local alternative. Consider the following model alternative to PLR (\ref{RetrospectivePLR})
+\begin{equation}
+\left\{ \begin{array}{llll}
+$$X_{I1}, \cdots, X_{In_I} \stackrel{\mathrm{ i.i.d.}}{\sim}f_{I}(x),\hspace{1.in}$$\\
+$$X_{i1}, \cdots, X_{in_i} \stackrel{\mathrm{ i.i.d.}}
+  {\sim} \exp\big(\gamma_i+g_i(x,\theta)+\kappa_i(\xi, x)\big)\cdot f_I(x),
+  \hspace{5mm}\mbox{for}\hspace{3mm} i = 1, \cdots, I-1,$$
+\end{array}\right.
+\label{Alternative_PLR}
+\end{equation}
+where $\kappa_i(\xi, x)$ is a pre-specified function. Furthermore, assume that there exists a unique $\xi_0$ such that $\kappa_i(\xi_0, x)=0$. Therefore, testing that $H_0:$ {\em PLR (\ref{RetrospectivePLR}) is valid} is equivalent to testing $H_0: \xi=\xi_0$ under model (\ref{Alternative_PLR}).
+
+As a special case, we choose the null model as the generalized logit model
+\begin{equation}
+\left\{ \begin{array}{llll}
+$$X_{I1}, \cdots, X_{1n_1} \stackrel{\mathrm{ i.i.d.}}{\sim}f_1(x)=\exp(\alpha_1+\beta_1x),\hspace{1.in}$$\\
+$$X_{I1}, \cdots, X_{2n_2} \stackrel{\mathrm{ i.i.d.}}{\sim}f_2(x)=\exp(\alpha_3+\beta_3x),\hspace{1.in}$$\\
+$$X_{i1}, \cdots, X_{in_i} \stackrel{\mathrm{ i.i.d.}}{\sim}f_3(x) $$
+\end{array}\right.
+\label{Generalized_Logit}
+\end{equation}
+Consider the following alternative to (\ref{Generalized_Logit})
+\begin{equation}
+\left\{ \begin{array}{llll}
+$$X_{I1}, \cdots, X_{1n_1} \stackrel{\mathrm{ i.i.d.}}{\sim}f_1^a(x)=\exp(\alpha_1+\beta_1x+\gamma x^2),\hspace{1.in}$$\\
+$$X_{I1}, \cdots, X_{2n_2} \stackrel{\mathrm{ i.i.d.}}{\sim}f_2(x)=\exp(\alpha_3+\beta_3x),\hspace{1.in}$$\\
+$$X_{i1}, \cdots, X_{in_i} \stackrel{\mathrm{ i.i.d.}}{\sim}f_3(x) $$
+\end{array}\right.
+\label{Generalized_Logit_Ha}
+\end{equation}
+Similar to the approach used in \cite{ZhangBiao-JMA-2002} to get theoretical procedure in assessing the asymptotic power at the local alternative. Since the multiple approximations have been used in this large sample test, we will not focus on the power. In stead, we present the following numerical example to illustrate the implementation of the proposed goodness-of-fit test.
+
+\noindent {\em Example}   Table 5.2 in \cite{McCullagh-Nelder-book-1989} contains
+data concerning the degree of pneumoconiosis in coalface workers as
+a function of exposure x measured in years. \cite{McCullagh-Nelder-book-1989}
+analyzed this data set by employing the proportional odds model and the
+continuation-ratio logit model. Let X denote "Period spent (years)" and Y represent "prevalence of pneumoconiosis" in which $Y=0, 1$, and $2$ stand for three categories: Normal, Mild pneumoconiosis,
+and Severe pneumoconiosis. Since the sample data $(X_i, Y_i), i=1, \cdots, 371,$
+can be thought as being drawn independently and identically from the joint
+distribution of (X, Y).
+
+We fit model (\ref{Generalized_Logit}) to this data and obtain semiparametric empirical likelihood point estimates
+$\tilde{\alpha}_1, \tilde{\beta}_1, \tilde{\alpha}_2, \tilde{\beta}_2)=(2)=(-2.2628, 0.0836, -3.1776, 0.1093)$. The information matrix $\chi^2$ statistic is $7.988$ with 10 degrees of freedom. The corresponding observed p-value is 0.37 indicating the goodness-of-fit for of the model. This also agrees with the result obtained by \cite{ZhangBiao-JMA-2002} via the Kolmogorov-Smirnov test. Since model (\ref{Generalized_Logit}) fits the data appropriately, all empirical likelihood estimates of the parameters are statistically valid for making inference.
+
+\section{Summary}
+In this paper, an information matrix goodness-of-fit test has been proposed for testing the adequacy of the retrospective polychotomous logistic regression models. Since the proposed test statistic has a $\chi^2$ distribution under the null hypothesis that the retrospective polychonomous logistic regression is correctly specified, the bootstrap procedure is not needed to find the p-value in order to draw conclusions.
+
+This procedure is, in fact, a nonparametric methods. It is also a computational intensive method and involves inversion of high dimension matrix.
+
+Finally, the method proposed in this paper can be applied directly to all semiparametric models with the general form specified in (\ref{RetrospectivePLR}).
+
+%\begin{table}[h]
+%\begin{center}
+%\caption{Summary of the Achieved Significant Levels and Powers}
+%\vspace{5mm}
+%\begin{tabular}{| c |c|cc |cc |}\hline
+%  &   & \multicolumn{4}{c|}{power}\\\cline{3-6}
+
+%& &\multicolumn{2}{c|}{$(n_2,n_3)=(30,40)$}
+%      &\multicolumn{2}{c|}{$(n_2,n_3)=(40,30)$}\\\cline{3-6}
+
+%$\sigma$& nominal level ($\alpha$) & $\Delta$&  $T$  & $\Delta$  &
+%$T$
+%\\\hline
+%        &0.10      &0.486     &0.988     & 0.518    & 0.992\\
+%  -1.5  &0.05      &0.328     &0.956     & 0.360    & 0.974\\
+%        &0.01      &0.138    & 0.514     & 0.152   &  0.736\\\hline
+%        &0.10      &0.302    & 0.918     & 0.328   &  0.952\\
+%  -1.0  &0.05      &0.178    & 0.780     & 0.216   &  0.864\\
+%        &0.01      &0.060    & 0.272     & 0.080   &  0.476\\\hline
+%        &0.10      &0.182    & 0.568     & 0.148    & 0.634\\
+%  -0.5  &0.05      &0.102    & 0.356     & 0.082    & 0.454\\
+%        &0.01      &0.028    & 0.086    &  0.020    & 0.102\\\hline
+%        &0.10      &0.070    & 0.092    &  0.086    & 0.116\\
+%   0.0  &0.05      &0.038    & 0.044    &  0.046    & 0.040\\
+%        &0.01      &0.014    & 0.006    &  0.006    & 0.006\\\hline
+%        &0.10      &0.116    & 0.512    &  0.128    & 0.494\\
+%   0.2  &0.05      &0.066    & 0.336    &  0.056    & 0.370\\
+%        &0.01     & 0.014    & 0.112    &  0.016    & 0.084\\\hline
+%        &0.10     & 0.234    & 0.840    &  0.221    & 0.888\\
+%   0.3  &0.05      &0.122    & 0.728    &  0.133    & 0.800\\
+%        &0.01     & 0.030    & 0.426    &  0.036    & 0.432\\\hline
+%        &0.10     & 0.508    & 0.990    &  0.600    & 0.996\\
+%   0.4  &0.05     & 0.362    & 0.980    &  0.450    & 0.994\\
+%        &0.01     & 0.140    & 0.890    &  0.198    & 0.912\\\hline
+%\end{tabular}
+%\label{summarysimulation}
+%\end{center}
+%\end{table}
+
+
+%\section*{Acknowledgement}
+
+%This work is partially supported by The Faculty Senate Research Grant (2007-2008) from University of Southern Maine.
+
+% The Appendices part is started with the command \appendix;
+% appendix sections are then done as normal sections
+
+\section*{Appendix}
+\appendix
+{\em Proof Theorem 2. (Information Matrix Equality)}. We still use the notation defined in (\ref{e_u}), (\ref{g_derivative}) and (\ref{P}). First of all, we calculate expectations of these second
+order derivatives of the semiparametric log-likelihood. For $u, v =1, 2, \cdots, I-1,$
+\begin{equation}
+E\Big(\frac{1}{n}\frac{\partial^2 l(\gamma_0, \theta_0)}{ \partial \gamma_u
+\partial \gamma_v}\Big)=E\Big( \sum_{i=1}^I\sum_{j=1}^{n_i}
+\frac{e_u( X_{ij}) e_v(X_{ij})}{\big[1+\sum_{i=1}^{I-1}e_i(X_{ij})\big]^2}\Big)= \frac{1}{1+\rho}
+\int P(x)e_u( x) e_v(x) dF_I(x) \label{gammauv}
+\end{equation}
+\noindent if $u\ne v $. For $u=v$, we have
+\begin{equation}
+E\Big(\frac{1}{n}\frac{\partial^2l(\gamma_0, \theta_0 )}{\partial
+\gamma_u^2} \Big) =-\frac{1}{1+\rho}\int P(x)e_u(x)\sum_{u\ne v,v=1}^{I-1}e_v(x)dF_I(x),\label{gammauu}
+\end{equation}
+$$E\Big( \frac{1}{n}\frac{\partial^2 l(\gamma_0, \theta_0)}{\partial \gamma_u \partial
+\theta^\tau}\Big)=-E\Big\{\frac{1}{n}\sum_{s=1}^n
+\frac{e_u(T_s) g_u^\theta(T_s)} {1+\sum_{m=1}^{I-1}e_u(T_s)}
+- \frac{1}{n}\sum_{s=1}^n
+\frac{e_u(T_s)\sum_{m=1}^{I-1}e_m(T_s)g_m^\theta(T_s)}{\{1+\sum_{m=1}^{I-1}e_m(T_s)\}^2}\Big\}$$
+\begin{equation}
+ = -\frac{1}{1+\rho}\int e_u(x)\Bigg(g_u^\theta(x)-
+\sum_{m=1}^{I-1}P(x)e_m(x)g_m^\theta(x)\Bigg)dF_I(x),\label{gammatheta}
+\end{equation}
+$$\mbox{and}\hspace{5mm}E \left(\frac{1}{n}\frac{\partial^2 l(\gamma_0,\theta_0)}{\partial \theta
+\partial \theta^\tau}\right)=\frac{1}{n}E\left(\sum_{i=1}^I\sum_{j=1}^{n_i}
+g_i^{\theta\theta^T}(X_{ij})-\sum_{s=1}^n\frac{\sum_{m=1}^{I-1}
+e_m(T_s)g_m^\theta(T_s) g_m^{\theta^T}(T_s)}{1+\sum_{m=1}^{I-1}e_m(T_s)}
+\right)$$
+$$+\frac{1}{n}E\Bigg(\sum_{s=1}^n\frac{\sum_{m=1}^{I-1}e_m(T_s) g_m^{\theta\theta^T}(T_s)}{1+\sum_{m=1}^{I-1}e_m(T_s)}+\sum_{s=1}^n\frac{\sum_{m=1}^{I-1}
+e_m(T_s)g_m^\theta(T_s)}{1+\sum_{m=1}^{I-1}e_m(T_s)}\times \frac{\sum_{m=1}^{I-1}e_m(T_s)g_m^{\theta^T}(T_s)}
+{1+\sum_{m=1}^{I-1}e_m(T_s)}\Bigg)$$
+\begin{equation}
+=-\frac{1}{1+\rho}\int\Bigg(\sum_{m=1}^{I-1}e_m(x)g_m^\theta(x)g_m^{\theta^T}(x)
+-\frac{[\sum_{m=1}^{I-1}e_m(x) g_m^\theta(x)]
+[\sum_{m=1}^{I-1}e_m(x)g_m^{\theta^T}(x)]} {1+ \sum_{m=1}^{I-1
+}e_m(x)}\Bigg)dF_I(x).\label{theta_theta}
+\end{equation}
+From equations (\ref{gammauv}), (\ref{gammauu}), (\ref{gammatheta})and (\ref{theta_theta}) we obtain
+\begin{equation}
+E\Big[U_n(\gamma_0,\theta_0) \Big]=- \left(\begin{array}{cc} S_1 &
+S_2 \\ S_2^T & S_3
+\end{array} \right)=- S.\label{fisherinfo}
+\end{equation}
+Next, we find the expectation of the squared score matrix. Observe that, for $u=1, 2, \cdots, I-1$,
+$$\frac{\partial l_{ij}(\gamma_0,\theta_))}{\partial\gamma_u}
+=\frac{e_u( X_{ij})}
+{1+\sum_{m=1}^{I-1}e_m( X_{ij})}
+-I_{[i<I]}I_{[i=u]}.$$
+where $I_{[\cdot]}$ is the indicator function. Taking the product of the above derivatives, and we have
+$$\frac{\partial l_{ij}(\gamma_0,\theta_0)}{\partial\gamma_u}
+\frac{\partial l_{ij}(\gamma_0, \theta_0)}{\partial
+\gamma_v}=\frac{e_u(X_{ij})e_v(X_{ij})}{\Big[1+\sum_{m=1}^{I-1}e_m(X_{ij})\Big]^2}-\frac{e_u(
+X_{ij})I_{[i<I]}I_{[i=v]}}{1+\sum_{m=1}^{I-1}e_m(X_{ij})}$$
+$$\hspace{1.5in}-\frac{e_v(X_{ij})I_{[i<I]}I_{[i=u]}}{1+\sum_{m=1}^{I-1}e_m(X_{ij})}+I_{[i<I]}I_{[i=v]}I_{[i=u]}.$$
+\noindent Note that if $u \ne v$, then $I_{[i<I]}I_{[i=v]}I_{[i=u]}=0$ and
+\begin{equation}
+E\Big(
+\frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}\frac{e_v(X_{ij})I_{[i<I]}I_{[i=u]}}{1+\sum_{m=1}^{I-1}e_m(
+X_{ij})}\Big) =\frac{1}{1+\rho}\int \frac{e_u(x)e_v(x)}{1+\sum_{m=1}^{I-1}e_m(x)}dF_I(x).
+\label{u=v}
+\end{equation}
+After some algebra, we have
+\begin{equation}
+E\Big(\frac{1}{n} \sum_{i=1}^{I-1}\sum_{j=1}^{n_i}\frac{\partial
+l_{ij}(\gamma_0,\theta_0)}{\partial\gamma_u} \frac{\partial
+l_{ij}(\gamma_), \theta_0)}{\partial
+\gamma_v}\Big)=-\frac{1}{1+\rho}\int \frac{e_u(x)e_v(x)}{1+\sum_{m=1}^{I-1}e_m(x)}dF_I(x).
+\label{a11}
+\end{equation}
+\noindent If $u=v$, then $E\big(I_{[i<I]}I_{[i=v]}I_{[i=u]}\big)=\int e_u(:x)dF_I(x)$, along with (\ref{u=v}), we have
+\begin{equation}
+E\big(\frac{1}{n}\Big[\frac{\partial l_{ij}(\gamma_0,\theta_0)}{\partial \gamma_u}
+\Big]^2\big) = \frac{1}{1+\rho}\int \frac{e_u(x)\sum_{m=1,m\ne u }^{I-1}e_m(x)}
+{1+\sum_{m=1}^{I-1}e_m(x)}dF_I(x). \label{a110}
+\end{equation}
+Since
+$$\Big(\frac{\partial l_{ij}(\gamma_,\theta_0)}{\partial
+\gamma}\frac{\partial l_{ij}(\gamma_,\theta_0)}{\partial
+\theta^\tau}\Big)^\tau =\frac{\partial
+l_{ij}(\gamma_,\theta_0)}{\partial \theta}\frac{\partial
+l_{ij}(\gamma_,\theta_0)}{\partial \gamma^\tau}.$$
+We only need to calculate the expectation of the matrix on the
+right side of the above equation. The explicit expression of the
+right hand side of the above equation is, for $u=1, 2, \cdots,
+I-1,$
+$$\frac{\partial
+l_{ij}(\gamma_0,\theta_0)}{\partial \theta}\frac{\partial
+l_{ij}(\gamma_0,\theta_0)}{\partial
+\gamma_u}=\frac{e_u(X_{ij})\big(\sum_{m-1}^{I-1}
+e_m(X_{ij})g_m^\theta (X_{ij})\big)}{\big[1+\sum_{m=1}^{I-1}e_m(:X_{ij})
+\big]^2}\hspace{2in}$$
+$$\hspace{1in}-\frac{\sum_{m-1}^{I-1}e_m(X_{ij})g_m^\theta(X_{ij})I_{[i=u]}}{1+\sum_{m=1}^{I-1}e_m(X_{ij})}
+-\frac{e_u(X_{ij})g_i^\theta(X_{ij})}{1+\sum_{m=1}^{I-1}e_m(X_{ij})}+
+g_i^\theta(X_{ij}) I_{[i=u]}.$$
+With the above expression we obtain
+\begin{equation}
+E\Big(\frac{1}{n}\frac{\partial l_{ij}(\gamma_,\theta_0)}{\partial
+\theta}\frac{\partial l_{ij}(\gamma_,\theta_0)}{\partial
+\gamma^T}\Big)=\frac{1}{1+\rho}\int e_u(x)\Big(g_m^\theta(x)-\frac{\sum_{m-1}^{I-1}e_m(x)
+g_m^\theta(x)}{1+\sum_{m=1}^{I-1}e_m(x)}\Big)dF_I(x).
+\label{a12}
+\end{equation}
+Finally, Notice that
+$$
+\frac{\partial l_{ij}(\gamma,\theta)}{\partial\theta}
+\frac{\partial l_{ij}(\gamma,\theta)}{\partial\theta^\tau}
+=\frac{[\sum_{m=1}^{I-1}e_m(x) g_m^\theta(X_{ij})]
+[\sum_{m=1}^{I-1}e_m(x) g_m^{\theta^T}(X_{ij})]}{[1+\sum_{m=1}^{I-1}e_m(x)]^2}+\sum_{j=1}^{n_i} g_i^\theta(X_{ij})g_i^{\theta^T}(X_{ij})I_{[i<I]}$$
+$$\hspace{0.5in}-\frac{[\sum_{m=1}^{I-1}e_m(x)g_m^\theta(X_{ij})]g_i^{\theta^T}(X_{ij})I_{[i<I]}}{1+\sum_{m=1}^{I-1}e_m(x)}
+-\frac{[\sum_{m=1}^{I-1}e_m(x)g_m^{\theta^T}(X_{ij})]g_i^{\theta}(X_{ij})I_{[i<I]}}{1+\sum_{m=1}^{I-1}e_m(x)}$$
+Therefore,
+$$
+E\Big(\frac{1}{n}\frac{\partial l_{ij}(\gamma,\theta)}{\partial\theta}
+\frac{\partial l_{ij}(\gamma,\theta)}{\partial\theta^\tau}\Big)
+$$
+\begin{equation}
+=\frac{1}{1+\rho}\int
+\Big(\sum_{m=1}^{I-1}e_m(x) g_m^\theta(x)g_m^{\theta^T}
+-\frac{\sum_{m=1}^{I-1}e_m(x)g_m^\theta(x)\sum_{m=1}^{I-1}e_m(x)g_m^\theta(x)}{1+\sum_{m=1}^{I-1}e_m(x)}\Big)dF_I(x).
+\label{a22}
+\end{equation}
+
+Combine the results in equations (\ref{a11}), (\ref{a110}),
+(\ref{a12}) and (\ref{a22}), we have
+
+\begin{equation}
+E\Big(V_n(\phi)\Big)=E\left(\frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}
+\{\frac{\partial l_{ij}(\phi_0)}{\partial\phi}\} \{\frac{\partial
+l_{ij}(\phi_0)}{\partial\phi^\tau}
+\}\right)=\left(\begin{array}{cc} S_1 & S_2 \\ S_2^\tau & S_3
+\end{array} \right)=S.
+\label{squarescore}
+\end{equation}
+
+\noindent Combining Equations (\ref{fisherinfo}) and (\ref{squarescore})
+we get $E\Big(V_n(\phi)+U_n(\phi)\Big)=0$ which proves the theorem.\\
+
+
+\noindent{\em Proof Theorem 3}. Assume that the polychotomous logistic regression model (\ref{RetrospectivePLR}) holds under case-control data. We have proved that $\tilde{\phi}=(\tilde{\gamma},\tilde{\theta})$ is the
+consistent empirical likelihood estimate of $\phi=(\gamma, \theta)$. Let $\phi_0=(\phi_{10}, \phi_{20}, \cdots, \phi_{q0})$ be the true value of the vector of parameters $\phi$. Applying the weak law of large numbers, we have $b =\partial D_n(\phi_0: X_{ij})/\partial \phi + o_{_P}(1)$. Using the first order Taylor expansion $D(\tilde{\phi})$
+at a neighborhood of the true value of the parameter $\phi_0$, we have
+\begin{equation}
+D(\tilde{\phi}:X_{ij})= D(\phi_0:X_{ij})+\frac{\partial D(\phi_0: X_{ij})}{\partial \phi}(\tilde{\phi}-\phi_0)+o_{_P}(||\tilde{\phi}-\phi_0||)
+\end{equation}
+\noindent where $||\tilde{\phi}-\phi_0||=O_{_P}(n^{-1/2})$ (by Theorem 1). Hence
+\begin{equation}
+\sqrt{n}D(\tilde{\phi}:X_{ij})= \sqrt{n}\left(D(\phi_0:X_{ij})+ \frac{1}{n}bS^{-1}\frac{\partial l{\phi_0: X_{ij}}}{\partial \phi}\right)+o_{_P}(1)
+\end{equation}
+From Theorems 1 and 2, we can see that
+$$
+E\left(D(\phi_0:X_{ij})+ \frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right)
+=E\left(D(\phi_0:X_{ij})\right)+ \frac{1}{n}bS^{-1}E\left(\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right) =0
+$$
+and
+$$
+\mbox{var}\left[ D(\phi_0:X_{ij})+ \frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right]
+=\mbox{var} \left[ D(\phi_0:X_{ij})\right] + \mbox{var}\left[ \frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right]
+$$
+\begin{equation}
++ 2 \mbox{E}\left[ D(\phi_0:X_{ij})\right]\left[\frac{1}{n}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi^T}S^{-1}b^T \right]
+\end{equation}
+Let
+$$
+\Psi_1=\mbox{var} \left[ D(\phi_0:X_{ij})\right], \hspace{3mm} \Lambda = \mbox{E}\left[ D(\phi_0:X_{ij})\right]\left[\frac{1}{n}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi^T}\right]
+$$
+Note that
+$$
+ \mbox{var}\left[ \frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right]
+ =\mbox{var}\left[ b(\tilde{\phi}-\phi_0)\right] = b[S^{-1}-(1+\rho)\Omega]b^T
+$$
+Next we calculate the elements in $\Psi_1=(\varphi_{kk^\prime}^1)$ where $1 \le k, k^\prime\le s$,  $k = v + (u-1)q -(u-1)u/2$, $k^\prime = v^\prime + (u^\prime-1)q -(u^\prime-1)u^\prime/2$ and $s=q(q+1)/2$. Note that, for $i \ne i^\prime$, $X_{ij}$ and $X_{i^\prime j^\prime}$ are jointly independent; $X_{ij}$ and $X_{ij^\prime}$ are identical and independent. Using these facts, we have
+$$
+\varphi_{kk^\prime} = \mbox{var}\left( D_{nk}(\phi_0:X_{ij}), D_{nk^\prime(\phi_0:X_{ij})} \right)
+=E\left\{ \left[ \frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}d_{uv}(\phi_0:X_{ij})\right] \left[ \frac{1}{n}\sum_{i=1}^I\sum_{j=1}^{n_i}d_{u^\prime v^\prime}(\phi_0:X_{ij}) \right]\right\}
+$$
+$$
+=\frac{1}{n^2}E\left[\sum_{i=1}^I\left(\sum_{j=1}^{n_i}d_{uv}(\phi_0:X_{ij})\sum_{j=1}^{n_1}d_{u^\prime v^\prime}(\phi_0:X_{ij})\right)+\sum_{1 \le i\ne i^\prime \le I}\left(\sum_{j=1}^{n_i}d_{uv}(\phi_0:X_{ij})\sum_{j=1}^{n_{i^\prime}}d_{u^\prime v^\prime}(\phi_0:X_{i^\prime j}) \right)\right]
+$$
+$$
+=\sum_{i=1}^I \left(\frac{\rho_i}{1+\rho}\right)^2\int d_{uv}(\phi_0:x)d_{u^\prime v^\prime}(\phi_0:x)dF_i(x)\hspace{3in}
+$$
+\begin{equation}
+\hspace{1.5in}+\sum_{1\le i\ne i^\prime \le I}^I \frac{\rho_i \rho_{i^\prime}}{(1+\rho)^2}\int d_{uv}(\phi_0:x)dG_i(x)\int d_{u^\prime v^\prime}(\phi_0:x)dF_{i^\prime}(x)
+\end{equation}
+Similarly, we can calculate the elements in $\Lambda=(\pi_{kw})$ for $1 \le k=v+(u-1)q-u(u-1)/2 \le s$ and $1 \le w \le q$ as follows
+$$
+\pi_{kw}=\frac{1}{n^2}E\left[ \sum_{i=1}^I\sum_{j=1}^{n_i}d_{uv}(\phi_0:X_{ij})\sum_{i=1}^I\sum_{j=1}^{n_i}\frac{\partial l(\phi_0:X_{ij})}{\partial w} \right]
+$$
+$$
+=\frac{1}{n^2}E\left[ \sum_{i=1}^I\left( \sum_{j=1}^{n_i}d_{uv}(\phi_0,X_{ij})\sum_{j=1}^{n_i}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi_w} \right) +\sum_{1 \le i \ne i^\prime \le I}\left( \sum_{j=1}^{n_i}d_{uv}(\phi_0: X_{ij})\sum_{j=1}^{n_{i^\prime}}\frac{\partial l (\phi_0: X_{i^\prime j})}{\partial \phi_w} \right)\right]
+$$
+$$
+=\sum_{i=1}^I \left(\frac{\rho_i}{1+\rho}\right)^2\int d_{uv}(\phi_0:x)\frac{\partial l(\phi_0:x)}{\partial \phi_w}dF_i(x)\hspace{2.5in}
+$$
+\begin{equation}
+\hspace{1.5in}+\sum_{1\le i\ne i^\prime \le I}^I \frac{\rho_i \rho_{i^\prime}}{(1+\rho)^2}\int d_{uv}(\phi_0:x)dG_i(x)\int \frac{\partial l (\phi_0: x)}{\partial \phi_w}dF_{i^\prime}(x)
+\end{equation}
+Therefore,
+\begin{equation}
+\Sigma \equiv \mbox{var}\left[ D(\phi_0:X_{ij})+ \frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi}\right] =\Psi_1 + b[S^{-1}-(1+\rho)\Omega + 2 \Lambda S^{-1}]b^T
+\end{equation}
+Since $\partial l(\alpha_0,\beta_0)/\partial \phi$ is a multivariate normal random variable, using multivariate central limit theorem and Slutsky's theorem, we have
+\begin{equation}
+\sqrt{n}D(\tilde{\phi}: X_{ij})=\sqrt{n}\left[D(\phi_0)
++\frac{1}{n}bS^{-1}\frac{\partial l(\phi_0: X_{ij})}{\partial \phi
+}\right]+o_p(1)\rightarrow N_s(0,\Sigma).
+\end{equation}
+As a consequence, if $\Sigma^{-1}$ exists,
+$$nD^T(\tilde{\phi})\Sigma^{-1}D(\tilde{\phi})\rightarrow_d \chi^2_s$$
+\noindent which completes the proof of theorem 3.
+
+
+
+
+
+
+
+
+\bibliography{IMtest}
+
+
+\end{document}

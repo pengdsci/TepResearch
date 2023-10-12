@@ -1,0 +1,167 @@
+% Copyright (C) 1990 Sake J. Hogeveen.
+
+% This is ASTRON.STY, a LaTeX style for use with the BibTeX style ASTRON.BST.
+
+% ASTRON.BST is an adaptation of APALIKE.BST by Oren Patashnik and Suzan King.
+
+% This style produces citations in the `author-year' format, which is widely
+% used among astronomical journals.
+% It supports two forms of citation: the \cite command produces:  (Author, year)
+% in the text; the \cite* command only:  (year) .
+
+% The long an short citation trickery is adapted from NAMED.BST by
+% Peter F. Patel-Schneider.
+
+% Copyright Notice:
+% The files ASTRON.BST, ASTRON.STY, ASTDOC.TEX, ASTDOC.BIB, EXAMPLE.TEX,
+% EXAMPLE.BIB, MNEMONIC.BIB, and TEMPLATE.BIB are a package.
+% You may copy and distribute them freely for non-commercial purposes,
+% provided that you keep the package together and this copyright notice
+% in tact.
+% You may not alter or modify the files; this helps to ensure that all
+% distributions of ASTRON.BST and related files are the same.
+% If you make any modifications, then you must give the files new names,
+% other than the present.
+% The author bears no responsibilities for errors in this document or
+% the software it describes; and shall not be held liable for any indirect,
+% incidental, or consequential damages.
+
+% If you find any bugs in the style files, or omissions in the documentation,
+% please report them to: E-mail A410SAKE@SARA.NL; UUCP: l42@nikhefh.nikhef.nl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\def\authors{{\large\textsc{By}~\MakeUppercase{#2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\@ifundefined{chapter}{\def\thebibliography#1{\section*{References\@mkboth
+  {REFERENCES}{REFERENCES}}\list
+  {\relax}{\setlength{\labelsep}{0em}
+        \setlength{\itemindent}{-\bibhang}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parsep}{0pt}
+        \setlength{\leftmargin}{\bibhang}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}}%
+{\def\thebibliography#1{\chapter*{Bibliography\@mkboth
+  {BIBLIOGRAPHY}{BIBLIOGRAPHY}}\list
+  {\relax}{\setlength{\labelsep}{0em}
+        \setlength{\itemindent}{-\bibhang}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parsep}{0pt}
+        \setlength{\leftmargin}{\bibhang}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}}
+
+%\newlength{\bibhang}
+%\setlength{\bibhang}{1.4em}
+                 % When used with "natbib.sty", there is an error, so I delete these two lines
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+ % \newenvironment{abstract}{%
+  %   \section*{\scshape\abstractname}}{}%
+\def\keywords#1{{\list{}{\leftmargin\z@}\item\relax%
+ \small\textit{Some key words}: #1\endlist}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\@intcite{\@ifnextchar [{\@tempswatrue\@citex}{\@tempswafalse\@citex[]}}
+\def\@intcitep{\@ifnextchar 
+  [{\@tempswatrue\@citexp}{\@tempswafalse\@citexp[]}}
+\def\cite{\@ifstar{\citefullp}{\citefull}}
+\def\citefull{\def\astroncite##1##2{##1 (##2}\@intcite}
+\def\citefullp{\def\astroncite##1##2{##1, ##2}\@intcitep}
+\def\citeyear{\def\astroncite##1##2{##2}\@intcitep}
+
+\def\@citex[#1]#2{\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi
+  \def\@citea{}\@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{), }\@ifundefined
+       {b@\@citeb}{{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+{\csname b@\@citeb\endcsname}}}{#1}}
+
+\def\@citexp[#1]#2{\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi
+  \def\@citea{}\@citep{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{; }\@ifundefined
+       {b@\@citeb}{{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+{\csname b@\@citeb\endcsname}}}{#1}}
+
+\def\@cite#1#2{#1\if@tempswa , #2\fi)}
+\def\@citep#1#2{#1\if@tempswa , #2\fi}
+
+\def\@biblabel#1{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\thesection{\@arabic{\c@section}}% 
+\def\clear@section@page{}% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+\def\theequation {\thesection\mbox{$\cdot$}\arabic{equation}}
+%\def\theequation {$\thesection \arabic{equation}$}
+
+\def\thesubsection {\thesection$\cdot$\arabic{subsection}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@seccntformat#1{\csname the#1\endcsname. }  
+    % This define the format of the counter of section end with period
+\def\section{\setcounter{equation}{0}
+  \@startsection{section}{1}{\z@}{-3.5ex plus -1ex minus 
+ -.2ex}{2.3ex plus .2ex}{\normalsize\sc\center}}  %%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand\thesection{\@arabic\c@section}%
+\renewcommand\appendix{\par
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \renewcommand\thesection{\@Alph\c@section}%
+  \setcounter{equation}{0}%
+  \@addtoreset{equation}{section}%
+\def\@Alph##1{%
+  \ifcase##1 A\or A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or
+   K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or
+   Y\or Z\else\@ctrerr\fi}%
+  \renewcommand\theequation{\@Alph\c@section$\cdot$\@arabic\c@equation}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+\def\@startsubsection#1#2#3#4#5#6{\if@noskipsec \leavevmode \fi
+   \par \@tempskipa #4\relax
+   \@afterindenttrue
+   \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
+   \if@nobreak \everypar{}\else
+     \addpenalty{\@secpenalty}\addvspace{\@tempskipa}\fi \@ifstar
+     {\@ssect{#3}{#4}{#5}{#6}}{\@dblarg{\@subsect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+
+\def\@subsect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+     \def\@svsec{}\else 
+     \refstepcounter{#1}\edef\@svsec{\csname the#1\endcsname\hskip 1em }\fi
+     \@tempskipa #5\relax
+      \ifdim \@tempskipa>\z@ 
+        \begingroup #6\relax
+          \@hangfrom{\hskip #3\relax{\rm \@svsec}}{\interlinepenalty \@M #8\par}%
+        \endgroup
+       \csname #1mark\endcsname{#7}\addcontentsline
+         {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                      \protect\numberline{\csname the#1\endcsname}\fi
+                    #7}\else
+        \def\@svsechd{#6\hskip #3\@svsec #8\csname #1mark\endcsname
+                      {#7}\addcontentsline
+                           {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                             \protect\numberline{\csname the#1\endcsname}\fi
+                       #7}}\fi
+     \@xsect{#5}}
+%%%%%%%%%%%%%%%%%%%
+%\newcommand\abstractname{Summary}
+\AtBeginDocument{\maketitle}
+%%%%%%%%%%%%%%%%%%%%
+\def\subsection{\@startsubsection{subsection}{2}{\z@}{-3.25ex plus -1ex minus 
+ -.2ex}{1.5ex plus .2ex}{\normalsize\it\center}}
+
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-3.25ex plus
+ -1ex minus -.2ex}{1.5ex plus .2ex}{\normalsize\bf}}
+\def\paragraph{\@startsection
+ {paragraph}{4}{\z@}
+ {3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bf}}
+\def\subparagraph{\@startsection
+ {subparagraph}{4}{\parindent}{3.25ex plus 1ex minus 
+ .2ex}{-1em}{\normalsize\bf}}
+ \def\period{\hbox{\@period}}
+\mathcode`\.="8000 {\catcode`\.=\active\gdef.{\bio@period}}
+\def\bio@period{\ifmmode{\cdot}\else\@period\fi}

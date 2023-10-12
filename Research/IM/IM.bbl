@@ -1,0 +1,129 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Agresti}{2002}{Aggresti-CDA-2002}
+Agresti, A.: 2002, {\em Categorical Data Analysis}, Wiley \& Sons, Inc.
+
+\harvarditem{Anderson}{1984}{Anderson-JRSSS-1984}
+Anderson, J.~A.: 1984, Regression and ordered categorical variables, {\em J.
+  Roy. Statist. Soc. Ser. B} {\bf 46}(1),~1--30.
+
+\harvarditem{Begg and Gray}{1984}{Begg-Gray-Biometrika-1984}
+Begg, C.~B. and Gray, R.: 1984, Calculation of polychotomous logistic
+  regression parameters using individualized regressions, {\em Biometrika} {\bf
+  71}(1),~11--18.
+
+\harvarditem{Cox}{1988}{Cox-StatMed-1988}
+Cox, A.: 1988, Multinomial regression models based on continuation ratios, {\em
+  Statistics in Medicine} {\bf 7},~435--441.
+
+\harvarditem{Farewell}{1979}{Farewell-LogisticRetrospective-Biometrika-1979}
+Farewell, V.~T.: 1979, Some results on the estimation of logistic models based
+  on retrospective data, {\em Biometrika} {\bf 66}(1),~27--32.
+
+\harvarditem{Fienberg}{1978}{Fienberg-book-1978}
+Fienberg, S.~E.: 1978, {\em The Analysis of cross clasified categorical data},
+  MIT-Press, Cambridge.
+
+\harvarditem{Hausman}{1978}{Hausman-SpecificationTest-Economitrica-1978}
+Hausman, J.~A.: 1978, Specification tests in econometrics, {\em Econometrica}
+  {\bf 46}(6),~1251--1271.
+
+\harvarditem{Hausman and
+  McFadden}{1984}{Hausman-McFadden-Specification-GLM-Economitica-1984}
+Hausman, J. and McFadden, D.: 1984, Specification tests for the multinomial
+  logit model, {\em Econometrica} {\bf 52}(5),~1219--1240.
+
+\harvarditem[Hemker et~al.]{Hemker, van~der Ark and
+  Sijtsma}{2001}{Hemker-MeasurementContinuationRatio-2001}
+Hemker, B.~T., van~der Ark, L.~A. and Sijtsma, K.: 2001, On measurement
+  properties of continuation ratio models, {\em Psychometrika} {\bf
+  66}(4),~487--506.
+
+\harvarditem{Holly}{1982}{Holly-SpecificationTest-Economitrica-1982}
+Holly, A.: 1982, A remark on {H}ausman's specification test, {\em Econometrica}
+  {\bf 50}(3),~749--759.
+
+\harvarditem{Kvist and Thyregod}{2000}{Kvist-Gislason-Thyregod-2000}
+Kvist, T., G.~H. and Thyregod, P.: 2000, Using continuation ratio logits to
+  analyze the variation of the age composition of fish catches, {\em Journal of
+  Applied Statistics} {\bf 27},~303--319.
+
+\harvarditem{Lin and Wei}{1991}{Lin-Wei-GOF-CoxModel-Sinica-1991}
+Lin, D.~Y. and Wei, L.~J.: 1991, Goodness-of-fit tests for the general {C}ox
+  regression model, {\em Statist. Sinica} {\bf 1}(1),~1--17.
+
+\harvarditem{Marshall and Olkin}{1997}{Martshall-Olkin-1997}
+Marshall, A.~W. and Olkin, I.: 1997, A new method for adding a parameter to a
+  family of distributions with application to the exponential and {W}eibull
+  families, {\em Biometrika} {\bf 84}(3),~641--652.
+
+\harvarditem{McCullagh}{1980}{MCCULLAGH-OrdinalReg-Discussion-1980}
+McCullagh, P.: 1980, Regression models for ordinal data, {\em J. Roy. Statist.
+  Soc. Ser. B} {\bf 42}(2),~109--142.
+
+\harvarditem{McCullagh and Nelder}{1989}{McCullagh-Nelder-book-1989}
+McCullagh, P. and Nelder, J.~A.: 1989, {\em Generalized Linear Models}, Chapman
+  and Hall.
+
+\harvarditem{Newey}{1985a}{Newey-GMSpecification-J-Economics-1985}
+Newey, W.~K.: 1985a, Generalized method of moments specification testing, {\em
+  J. Econometrics} {\bf 29}(3),~229--256.
+
+\harvarditem{Newey}{1985b}{Newey-MLE-CondMomentTest-Specification-Economitrica-1985}
+Newey, W.~K.: 1985b, Maximum likelihood specification testing and conditional
+  moment tests, {\em Econometrica} {\bf 53}(5),~1047--1070.
+
+\harvarditem{Owen}{1990}{Owen-Ann-1990}
+Owen, A.: 1990, Empirical likelihood ratio confidence regions, {\em Ann.
+  Statist.} {\bf 18}(1),~90--120.
+
+\harvarditem{Owen}{1988}{Owen-Biometrika-1988}
+Owen, A.~B.: 1988, Empirical likelihood ratio confidence intervals for a single
+  functional, {\em Biometrika} {\bf 75}(2),~237--249.
+
+\harvarditem{Peng and Zhang}{2008}{Peng-Zhang-JSPI-2008}
+Peng, C. and Zhang, B.: 2008, A note on goodness-of-fit test for continuation
+  ratio logistic regression models under case-control data, {\em JSPI} {\bf
+  138},~2355--2365.
+
+\harvarditem{Prentice and
+  Pyke}{1979}{Prentice-Pyke-LogisticCasecontrol-Biometrika-1979}
+Prentice, R.~L. and Pyke, R.: 1979, Logistic disease incidence models and
+  case-control studies, {\em Biometrika} {\bf 66}(3),~403--411.
+
+\harvarditem{Qin and Zhang}{1997}{Qin-Zhang-Biometrika-1997}
+Qin, J. and Zhang, B.: 1997, A goodness-of-fit test for logistic regression
+  models based on case-control data, {\em Biometrika} {\bf 84}(3),~609--618.
+
+\harvarditem{Rindorf and Lewy}{2001}{Rindorf-Lewy-2001}
+Rindorf, T. and Lewy, P.: 2001, Analysis of length and age distributions using
+  continuation ratiuo logits, {\em Canadian Journal of Fishery and Aquatic
+  Sciences} {\bf 58},~1141--1152.
+
+\harvarditem{Scott and
+  Wild}{1986}{Scott-Wild-CaseControl-ChoiceBasedSampling-JRSSSB-1986}
+Scott, A.~J. and Wild, C.~J.: 1986, Fitting logistic models under case-control
+  or choice based sampling, {\em J. Roy. Statist. Soc. Ser. B} {\bf
+  48}(2),~170--182.
+
+\harvarditem{Tutz}{1991}{Tutz-SeqCateReg-CSDA-1991}
+Tutz, G.: 1991, Sequential models in categorical regression, {\em Comput.
+  Statist. Data Anal.} {\bf 11}(3),~275--295.
+
+\harvarditem{White}{1982}{White-1982}
+White, H.: 1982, Maximum likelihood estimation of misspecified models, {\em
+  Econometrica} {\bf 50},~1--26.
+
+\harvarditem{Zhang}{2001}{ZhangBiao-Biometrika-2001}
+Zhang, B.: 2001, An information matrix test for logistic regression models
+  based on case-control data, {\em Biometrika} {\bf 88}(4),~921--932.
+
+\harvarditem{Zhang}{2002}{ZhangBiao-JMA-2002}
+Zhang, B.: 2002, Assessing goodness-of-fit of generalized logit models based on
+  case-control data, {\em J. Multivariate Anal.} {\bf 82}(1),~17--38.
+
+\harvarditem{Zhang}{2004}{ZhangBiao-AustrNZJS-2004}
+Zhang, B.: 2004, Assessing goodness-of-fit of categorical regression models
+  based on case-control data, {\em Aust. N. Z. J. Stat.} {\bf 46}(3),~407--423.
+
+\end{thebibliography}

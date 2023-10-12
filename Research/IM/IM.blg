@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: IM.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: kluwer.bst
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+Database file #1: IMtest.bib
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1224 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1224 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1260 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1264 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1296 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1296 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1329 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1348 of file kluwer.bst
+Too many commas in name 1 of "Kvist, T., Gislason, H. and Thyregod, P." for entry Kvist-Gislason-Thyregod-2000
+while executing---line 1348 of file kluwer.bst
+You've used 29 entries,
+            2880 wiz_defined-function locations,
+            830 strings with 9402 characters,
+and the built_in function-call counts, 74214 in all, are:
+= -- 11635
+> -- 995
+< -- 0
++ -- 5157
+- -- 294
+* -- 6074
+:= -- 15710
+add.period$ -- 29
+call.type$ -- 29
+change.case$ -- 403
+chr.to.int$ -- 28
+cite$ -- 29
+duplicate$ -- 409
+empty$ -- 958
+format.name$ -- 397
+if$ -- 13193
+int.to.chr$ -- 6
+int.to.str$ -- 0
+missing$ -- 32
+newline$ -- 90
+num.names$ -- 291
+pop$ -- 74
+preamble$ -- 1
+purify$ -- 435
+quote$ -- 0
+skip$ -- 368
+stack$ -- 0
+substring$ -- 15993
+swap$ -- 55
+text.length$ -- 406
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 0
+while$ -- 660
+width$ -- 0
+write$ -- 353
+(There were 9 error messages)
